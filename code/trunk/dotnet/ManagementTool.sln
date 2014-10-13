@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagementTool.Framework", "ManagementTool.Framework\ManagementTool.Framework.csproj", "{EDF259E4-15F6-4D49-9E6F-8EAD4B2DED08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagementTool.Website", "..\inetpub\ManagementTool.Website\ManagementTool.Website.csproj", "{4283A46E-5792-455D-8943-BA8F45CD9DA5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDF259E4-15F6-4D49-9E6F-8EAD4B2DED08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDF259E4-15F6-4D49-9E6F-8EAD4B2DED08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDF259E4-15F6-4D49-9E6F-8EAD4B2DED08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDF259E4-15F6-4D49-9E6F-8EAD4B2DED08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4283A46E-5792-455D-8943-BA8F45CD9DA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4283A46E-5792-455D-8943-BA8F45CD9DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4283A46E-5792-455D-8943-BA8F45CD9DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4283A46E-5792-455D-8943-BA8F45CD9DA5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

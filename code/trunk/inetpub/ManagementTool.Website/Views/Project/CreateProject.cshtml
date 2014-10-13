@@ -1,0 +1,24 @@
+﻿@model ManagementTool.Framework.Models.Project.ProjectVM
+@{
+    ViewBag.Title = "CreateProject";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CreateProject</h2>
+
+@using (Html.BeginForm("SignIn", "Account", FormMethod.Post))
+{
+@Html.LabelFor(l => l.Title, "Title")
+@Html.TextBoxFor(l => l.Title)
+
+@Html.LabelFor(l => l.Description, "Description")
+@Html.TextBoxFor(l => l.Description)
+
+@Html.LabelFor(l => l.Manager, "Project Manager")
+@Html.TextBoxFor(l => l.Manager)
+
+@Html.LabelFor(l => l.DueDate, "Due Date")
+@Html.TextBoxFor(l => l.DueDate)
+
+<input type="submit" value="submit" />
+}

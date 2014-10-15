@@ -13,23 +13,25 @@ namespace ManagementTool.Framework.Mediators
     {
         public void RegisterUser(RegisterVM reg)
         {
-            var db = new ManagementToolEntities();
-            var resp = new UsersRepository(db);
-
-            bool emailExist = resp.AccountExist(reg.Email);
-
-            if (!emailExist)
+            using (var db = new ManagementToolEntities())
             {
-                var regUser = new User
+                var resp = new UsersRepository(db);
+
+                bool emailExist = resp.AccountExist(reg.Email);
+
+                if (!emailExist)
                 {
-                    Email = reg.Email,
-                    FirstName = reg.FirstName,
-                    LastName = reg.LastName,
-                    Password = reg.Password,
-                    CompanyId = reg.CompanyId
-                };
-                var mine = resp.Insert(regUser);
-                var me = db.SaveChanges();
+                    var regUser = new User
+                    {
+                        Email = reg.Email,
+                        FirstName = reg.FirstName,
+                        LastName = reg.LastName,
+                        Password = reg.Password,
+                        CompanyId = reg.CompanyId
+                    };
+                    var mine = resp.Insert(regUser);
+                    var me = db.SaveChanges();
+                }
             }
             //db.Users.Add(regUser);
             //db.SaveChanges();
@@ -50,22 +52,24 @@ namespace ManagementTool.Framework.Mediators
 
         public bool Authenticate(LoginVM user)
         {
-            var db = new ManagementToolEntities();
-            var resp = new UsersRepository(db);
-
-            bool isAuthenticated = false;
-
-            var account = resp.GetFirstOrDefault(u => u.Email == user.Email);
-
-            if (account != null)
+            using (var db = new ManagementToolEntities())
             {
-                if (user.Password == account.Password)
-                {
-                    isAuthenticated = true;
-                }
-            }
+                var resp = new UsersRepository(db);
 
-            return isAuthenticated;
+                bool isAuthenticated = false;
+
+                var account = resp.GetFirstOrDefault(u => u.Email == user.Email);
+
+                if (account != null)
+                {
+                    if (user.Password == account.Password)
+                    {
+                        isAuthenticated = true;
+                    }
+                }
+
+                return isAuthenticated;
+            }
 
         }
     }

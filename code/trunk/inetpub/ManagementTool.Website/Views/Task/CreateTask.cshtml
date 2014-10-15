@@ -1,12 +1,11 @@
 ﻿@model ManagementTool.Framework.Models.Task.TaskVM
 @{
-    ViewBag.Title = "CreateTask";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>CreateTask</h2>
 
-@using (Html.BeginForm("SignIn", "Account", FormMethod.Post))
+@using (Html.BeginForm("AddTask", "Task", FormMethod.Post))
 {
 @Html.LabelFor(l => l.Title, "Title")
 @Html.TextBoxFor(l => l.Title)
@@ -16,6 +15,12 @@
 
 @Html.LabelFor(l => l.DueDate, "Due Date")
 @Html.TextBoxFor(l => l.DueDate)
+
+@Html.LabelFor(l => l.Category, "Category")
+@Html.TextBoxFor(l => l.Category)
+
+@Html.LabelFor(l => l.Status, "Status")
+@Html.TextBoxFor(l => l.Status)
 
 <input type="submit" value="submit" />
 }

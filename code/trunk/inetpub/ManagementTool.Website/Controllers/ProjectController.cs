@@ -8,7 +8,7 @@ using ManagementTool.Framework.Models.Project;
 
 namespace ManagementTool.Website.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ProjectController : Controller
     {
         //
@@ -16,6 +16,8 @@ namespace ManagementTool.Website.Controllers
 
         public ActionResult Index()
         {
+            var mediator = new ProjectMediator();
+            var mine = mediator.GetAllCompanyProjects(1);
             return View();
         }
 
@@ -28,6 +30,7 @@ namespace ManagementTool.Website.Controllers
         public ActionResult AddProject(ProjectVM project)
         {
             var mediator = new ProjectMediator();
+            mediator.CreateProject(project);
             return Redirect("/");
         }
     }

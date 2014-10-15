@@ -55,7 +55,7 @@ namespace ManagementTool.Website.Controllers
                     HttpContext.Response.Cookies.Add(cookie);
                 }
 
-                return Redirect("~/account/login.cshtml");
+                return Redirect("~/account/login");
             }
 
             return Redirect("/");

@@ -24,9 +24,11 @@ namespace ManagementTool.Website.Controllers
             return View("~/Views/Task/CreateTask.cshtml", taskModel);
         }
 
-        public ActionResult AddTask()
+        public ActionResult AddTask(TaskVM task)
         {
             var mediator = new TaskMediator();
+
+            mediator.CreateTask(task);
             return Redirect("/");
         }
 

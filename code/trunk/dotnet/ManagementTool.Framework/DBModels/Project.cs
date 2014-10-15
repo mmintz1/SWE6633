@@ -14,10 +14,10 @@ namespace ManagementTool.Framework.DBModels
     
     public partial class Project
     {
+        public int ProjectID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public Nullable<int> ProjectId { get; set; }
-        public string status { get; set; }
+        public string Status { get; set; }
         public string ProjectManager { get; set; }
         public System.DateTime DueDate { get; set; }
         public int CompanyId { get; set; }

@@ -13,5 +13,7 @@ namespace ManagementTool.Framework.Models.Task
         public int Id { get; set; }
         public DateTime DueDate { get; set; }
         public string Category { get; set; }
+        public string Status { get; set; }
+        public double TaskHours { get; set; }
     }
 }

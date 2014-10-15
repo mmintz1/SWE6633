@@ -19,5 +19,8 @@ namespace ManagementTool.Framework.DBModels
         public string Status { get; set; }
         public System.DateTime DueDate { get; set; }
         public int ProjectId { get; set; }
+        public double ExpendedHours { get; set; }
+        public string Category { get; set; }
+        public int TaskID { get; set; }
     }
 }

@@ -25,8 +25,8 @@ namespace ManagementTool.Framework.DBModels
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<User> Users { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Task> Tasks { get; set; }
-        public DbSet<User> Users { get; set; }
     }
 }

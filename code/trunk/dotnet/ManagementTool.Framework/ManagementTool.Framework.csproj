@@ -91,6 +91,8 @@
     <Compile Include="Models\Project\ProjectVM.cs" />
     <Compile Include="Models\Task\TaskVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transformers\ProjectTransformer.cs" />
+    <Compile Include="Transformers\TaskTransformer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -6,61 +6,34 @@
     <edmx:StorageModels>
     <Schema Namespace="ManagementToolDBModels.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="ManagementToolDBModelsStoreContainer">
-          <EntitySet Name="Project" EntityType="ManagementToolDBModels.Store.Project" store:Type="Tables" store:Schema="dbo" store:Name="Project">
-            <DefiningQuery>SELECT 
-      [Project].[Title] AS [Title], 
-      [Project].[Description] AS [Description], 
-      [Project].[ProjectId] AS [ProjectId], 
-      [Project].[status] AS [status], 
-      [Project].[ProjectManager] AS [ProjectManager], 
-      [Project].[DueDate] AS [DueDate], 
-      [Project].[CompanyId] AS [CompanyId]
-      FROM [dbo].[Project] AS [Project]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Task" EntityType="ManagementToolDBModels.Store.Task" store:Type="Tables" store:Schema="dbo" store:Name="Task">
-            <DefiningQuery>SELECT 
-      [Task].[Title] AS [Title], 
-      [Task].[Description] AS [Description], 
-      [Task].[Status] AS [Status], 
-      [Task].[DueDate] AS [DueDate], 
-      [Task].[ProjectId] AS [ProjectId]
-      FROM [dbo].[Task] AS [Task]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Project" EntityType="ManagementToolDBModels.Store.Project" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Task" EntityType="ManagementToolDBModels.Store.Task" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="ManagementToolDBModels.Store.User" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'ManagementToolProject.dbo.Project' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="Project">
           <Key>
-            <PropertyRef Name="Title" />
-            <PropertyRef Name="status" />
-            <PropertyRef Name="DueDate" />
-            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="ProjectID" />
           </Key>
+          <Property Name="ProjectID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="Description" Type="nvarchar" MaxLength="250" />
-          <Property Name="ProjectId" Type="int" />
-          <Property Name="status" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="ProjectManager" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="Status" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ProjectManager" Type="nvarchar" Nullable="false" MaxLength="255" />
           <Property Name="DueDate" Type="date" Nullable="false" />
           <Property Name="CompanyId" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'ManagementToolProject.dbo.Task' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="Task">
           <Key>
-            <PropertyRef Name="Title" />
-            <PropertyRef Name="Status" />
-            <PropertyRef Name="DueDate" />
-            <PropertyRef Name="ProjectId" />
+            <PropertyRef Name="TaskID" />
           </Key>
           <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="250" />
           <Property Name="Status" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="DueDate" Type="date" Nullable="false" />
           <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="ExpendedHours" Type="float" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="TaskID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -77,38 +50,10 @@
     <edmx:ConceptualModels>
       <Schema Namespace="ManagementToolDBModels" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ManagementToolEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="ManagementToolDBModels.User" />
           <EntitySet Name="Projects" EntityType="ManagementToolDBModels.Project" />
           <EntitySet Name="Tasks" EntityType="ManagementToolDBModels.Task" />
-          <EntitySet Name="Users" EntityType="ManagementToolDBModels.User" />
         </EntityContainer>
-        <EntityType Name="Project">
-          <Key>
-            <PropertyRef Name="Title" />
-            <PropertyRef Name="status" />
-            <PropertyRef Name="DueDate" />
-            <PropertyRef Name="CompanyId" />
-          </Key>
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
-          <Property Name="ProjectId" Type="Int32" />
-          <Property Name="status" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="ProjectManager" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="CompanyId" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Task">
-          <Key>
-            <PropertyRef Name="Title" />
-            <PropertyRef Name="Status" />
-            <PropertyRef Name="DueDate" />
-            <PropertyRef Name="ProjectId" />
-          </Key>
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ProjectId" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Email" />
@@ -119,36 +64,37 @@
           <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="CompanyId" Nullable="false" />
         </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Type="Int32" Name="ProjectID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Status" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProjectManager" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DueDate" Nullable="false" Precision="0" />
+          <Property Type="Int32" Name="CompanyId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="TaskID" />
+          </Key>
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Status" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DueDate" Nullable="false" Precision="0" />
+          <Property Type="Int32" Name="ProjectId" Nullable="false" />
+          <Property Type="Double" Name="ExpendedHours" Nullable="false" />
+          <Property Type="String" Name="Category" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="TaskID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ManagementToolDBModelsStoreContainer" CdmEntityContainer="ManagementToolEntities">
-          <EntitySetMapping Name="Projects">
-            <EntityTypeMapping TypeName="ManagementToolDBModels.Project">
-              <MappingFragment StoreEntitySet="Project">
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="ProjectManager" ColumnName="ProjectManager" />
-                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
-                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tasks">
-            <EntityTypeMapping TypeName="ManagementToolDBModels.Task">
-              <MappingFragment StoreEntitySet="Task">
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
-                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="ManagementToolDBModels.User">
               <MappingFragment StoreEntitySet="User">
@@ -157,6 +103,33 @@
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="ManagementToolDBModels.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="ProjectManager" ColumnName="ProjectManager" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="ManagementToolDBModels.Task">
+              <MappingFragment StoreEntitySet="Task">
+                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="ExpendedHours" ColumnName="ExpendedHours" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

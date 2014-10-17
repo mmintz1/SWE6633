@@ -13,22 +13,42 @@ namespace ManagementTool.Website.Controllers
         //
         // GET: /Task/
 
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return View();
+            var mediator = new TaskMediator();
+            var projects = mediator.GetAllTasks(id);
+            return View(projects);
         }
 
         public ActionResult CreateTask()
         {
             var taskModel = new TaskVM();
-            return View("~/Views/Task/CreateTask.cshtml", taskModel);
+            ViewBag.ControllerAction = "AddTask";
+            return View("~/Views/Task/TaskForm.cshtml", taskModel);
         }
 
+        [HttpPost]
         public ActionResult AddTask(TaskVM task)
         {
             var mediator = new TaskMediator();
 
             mediator.CreateTask(task);
+            return Redirect("/");
+        }
+
+        public ActionResult EditTask(int id)
+        {
+            var mediator = new TaskMediator();
+            ViewBag.ControllerAction = "EditTask";
+            TaskVM taskModel = mediator.GetTask(id);
+            return View("~/Views/Task/TaskForm.cshtml", taskModel);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateTask(TaskVM model)
+        {
+            var mediator = new TaskMediator();
+            mediator.UpdateTask(model);
             return Redirect("/");
         }
 

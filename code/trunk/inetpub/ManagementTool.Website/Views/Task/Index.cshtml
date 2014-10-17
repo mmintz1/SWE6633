@@ -1,4 +1,4 @@
-﻿@model List<ManagementTool.Framework.Models.Project.ProjectVM>
+﻿@model List<ManagementTool.Framework.Models.Task.TaskVM>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -17,26 +17,32 @@
             Due Date
         </th>
         <th>
-            Project Manager
+            Category
+        </th>
+        <th>
+            Hours
         </th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(itmodelItem => item.Title)
+            @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DueDate.ToString())
+            @item.DueDate.ToShortDateString()
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Manager)
+            @Html.DisplayFor(modelItem => item.Category)
         </td>
         <td>
-            @Html.ActionLink("Edit", "EditProject", new { controller = "Project", id = item.Id }) |
+            @Html.DisplayFor(modelItem => item.TaskHours)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditTask", new { controller = "Task", id = item.Id }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
         </td>
     </tr>

@@ -228,9 +228,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Project\CreateProject.cshtml" />
+    <Content Include="Views\Project\ProjectForm.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
-    <Content Include="Views\Task\CreateTask.cshtml" />
+    <Content Include="Views\Task\TaskForm.cshtml" />
+    <Content Include="Views\Task\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

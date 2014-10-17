@@ -18,7 +18,11 @@ namespace ManagementTool.Framework.Transformers
                 task.Title = model.Title;
                 task.Description = model.Description;
                 task.DueDate = model.DueDate;
-                task.Id = (int)model.ProjectId;
+                task.Id = model.TaskID;
+                task.Status = model.Status;
+                task.ProjectId = model.ProjectId;
+                task.TaskHours = model.ExpendedHours;
+                task.Category = model.Category;
             }
 
             return task;

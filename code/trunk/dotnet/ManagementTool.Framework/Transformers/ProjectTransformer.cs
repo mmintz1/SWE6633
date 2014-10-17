@@ -21,6 +21,7 @@ namespace ManagementTool.Framework.Transformers
                 project.Manager = model.ProjectManager;
                 project.Status = model.Status;
                 project.Title = model.Title;
+                project.CompanyId = model.CompanyId;
             }
 
             return project;

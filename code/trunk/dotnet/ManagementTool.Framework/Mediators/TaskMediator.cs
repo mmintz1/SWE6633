@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ManagementTool.Framework.Data;
 using ManagementTool.Framework.DBModels;
 using ManagementTool.Framework.Models.Task;
+using ManagementTool.Framework.Transformers;
 
 namespace ManagementTool.Framework.Mediators
 {
@@ -31,6 +32,56 @@ namespace ManagementTool.Framework.Mediators
 
                 resp.Insert(task);
                 var success = db.SaveChanges();
+            }
+        }
+
+        public List<TaskVM> GetAllTasks(int projectId)
+        {
+            var tasks = new List<TaskVM>();
+            var transformer = new TaskTransformer();
+
+            using (var db = new ManagementToolEntities())
+            {
+                var resp = new TaskRepository(db);
+                IEnumerable<DBModels.Task> dbtasks = resp.Get(t => t.ProjectId == projectId);
+                tasks = transformer.Transform(dbtasks);
+            }
+            return tasks;
+        }
+
+        public TaskVM GetTask(int id)
+        {
+            var model = new TaskVM();
+            var transformer = new TaskTransformer();
+
+            using (var db = new ManagementToolEntities())
+            {
+                var resp = new TaskRepository(db);
+
+                DBModels.Task task = resp.GetFirstOrDefault(t => t.ProjectId == id);
+                model = transformer.Transform(task);
+            }
+
+            return model;
+        }
+
+        public void UpdateTask(TaskVM model)
+        {
+            using (var db = new ManagementToolEntities())
+            {
+                var resp = new TaskRepository(db);
+                DBModels.Task dbTask = resp.GetFirstOrDefault(t => t.TaskID == model.Id);
+
+                dbTask.Category = model.Category;
+                dbTask.Description = model.Description;
+                dbTask.DueDate = model.DueDate;
+                dbTask.ExpendedHours += model.TaskHours;
+                dbTask.Status = model.Status;
+                dbTask.Title = model.Title;
+
+                resp.Update(dbTask);
+                var success = db.SaveChanges();
+
             }
         }
     }

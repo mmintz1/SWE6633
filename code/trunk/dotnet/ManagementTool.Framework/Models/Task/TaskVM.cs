@@ -15,5 +15,6 @@ namespace ManagementTool.Framework.Models.Task
         public string Category { get; set; }
         public string Status { get; set; }
         public double TaskHours { get; set; }
+        public int ProjectId { get; set; }
     }
 }

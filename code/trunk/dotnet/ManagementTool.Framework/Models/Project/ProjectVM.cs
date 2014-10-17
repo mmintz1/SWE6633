@@ -14,5 +14,6 @@ namespace ManagementTool.Framework.Models.Project
         public DateTime DueDate { get; set; }
         public int Id { get; set; }
         public string Manager { get; set; }
+        public int CompanyId { get; set; }
     }
 }

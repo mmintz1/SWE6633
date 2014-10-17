@@ -46,5 +46,40 @@ namespace ManagementTool.Framework.Mediators
             }
             return projects;
         }
+
+        public ProjectVM GetProject(int id)
+        {
+            var model = new ProjectVM();
+            var transformer = new ProjectTransformer();
+
+            using (var db = new ManagementToolEntities())
+            {
+                var resp = new ProjectRepository(db);
+
+                Project project = resp.GetFirstOrDefault(p => p.ProjectID == id);
+                model = transformer.Transform(project);
+            }
+
+            return model;
+        }
+
+        public void UpdateProject(ProjectVM model)
+        {
+            using (var db = new ManagementToolEntities())
+            {
+                var resp = new ProjectRepository(db);
+                Project dbProject = resp.GetFirstOrDefault(p => p.ProjectID == model.Id);
+
+                dbProject.Description = model.Description;
+                dbProject.DueDate = model.DueDate;
+                dbProject.ProjectManager = model.Manager;
+                dbProject.Status = model.Status;
+                dbProject.Title = model.Title;
+
+                resp.Update(dbProject);
+                var success = db.SaveChanges();
+                
+            }
+        }
     }
 }

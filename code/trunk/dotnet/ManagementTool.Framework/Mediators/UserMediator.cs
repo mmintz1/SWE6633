@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ManagementTool.Framework.Data;
 using ManagementTool.Framework.DBModels;
+using ManagementTool.Framework.Enums;
 using ManagementTool.Framework.Models.Account;
 
 namespace ManagementTool.Framework.Mediators
@@ -27,27 +28,13 @@ namespace ManagementTool.Framework.Mediators
                         FirstName = reg.FirstName,
                         LastName = reg.LastName,
                         Password = reg.Password,
-                        CompanyId = reg.CompanyId
+                        CompanyId = reg.CompanyId,
+                        Role = Roles.Employee.ToString()
                     };
                     var mine = resp.Insert(regUser);
-                    var me = db.SaveChanges();
+                    var success = db.SaveChanges() > 0;
                 }
             }
-            //db.Users.Add(regUser);
-            //db.SaveChanges();
-            //using (var context = new UnitOfWork())
-            //{
-            //    var regUser = new User
-            //    {
-            //        Email = reg.Email,
-            //        FirstName = reg.FirstName,
-            //        LastName = reg.LastName,
-            //        Password = reg.Password,
-            //        CompanyId = reg.CompanyId
-            //    };
-
-            //    var success = context.Save() > 0;
-            //}
         }
 
         public bool Authenticate(LoginVM user)

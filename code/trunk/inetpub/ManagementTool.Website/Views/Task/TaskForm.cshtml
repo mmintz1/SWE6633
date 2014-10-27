@@ -8,22 +8,50 @@
 
 @using (Html.BeginForm(@action, "Task", FormMethod.Post))
 {
-@Html.LabelFor(l => l.Title, "Title")
-@Html.TextBoxFor(l => l.Title)
+    <div>
+        <fieldset>
+            <legend></legend>
+        
+            <div class="editor-label">
+                @Html.LabelFor(l => l.Title, "Title")
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(l => l.Title)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(l => l.Description, "Description")
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(l => l.Description)
+            </div>
 
-@Html.LabelFor(l => l.Description, "Description")
-@Html.TextBoxFor(l => l.Description)
+            <div class="editor-label">
+                @Html.LabelFor(l => l.DueDate, "Due Date")
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(l => l.DueDate)
+            </div>
 
-@Html.LabelFor(l => l.DueDate, "Due Date")
-@Html.TextBoxFor(l => l.DueDate)
+            <div class="editor-label">
+                @Html.LabelFor(l => l.Category, "Category")
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(l => l.Category)
+            </div>
 
-@Html.LabelFor(l => l.Category, "Category")
-@Html.TextBoxFor(l => l.Category)
+            <div class="editor-label">
+                @Html.LabelFor(l => l.Status, "Status")
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(l => l.Status)
+            </div>
 
-@Html.LabelFor(l => l.Status, "Status")
-@Html.TextBoxFor(l => l.Status)
+            @Html.HiddenFor(l => l.Id)
 
-@Html.HiddenFor(l => l.Id)
-
-<input type="submit" value="submit" />
+            <p>
+                <input type="submit" value="submit" />
+            </p>
+        </fieldset>
+    </div>
 }

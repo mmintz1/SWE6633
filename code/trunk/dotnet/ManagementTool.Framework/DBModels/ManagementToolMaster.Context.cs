@@ -28,5 +28,6 @@ namespace ManagementTool.Framework.DBModels
         public DbSet<User> Users { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Task> Tasks { get; set; }
+        public DbSet<Requirement> Requirements { get; set; }
     }
 }

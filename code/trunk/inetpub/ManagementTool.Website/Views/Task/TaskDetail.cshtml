@@ -1,0 +1,47 @@
+﻿@model ManagementTool.Framework.Models.Task.TaskVM
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table>
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Due Date
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Hours
+        </th>
+    </tr>
+
+    <tr>
+        @Html.DisplayFor(l => l.Title)
+
+        @Html.DisplayFor(l => l.Description)
+
+        @Html.DisplayFor(l => l.Status)
+
+        @Html.DisplayFor(l => l.DueDate)
+
+        @Html.DisplayFor(l => l.Category)
+
+        @Html.DisplayFor(l => l.TaskHours)
+
+        @Html.ActionLink("Edit", "EditTask", new { controller = "task", id = Model.Id})
+    </tr>
+
+
+</table>

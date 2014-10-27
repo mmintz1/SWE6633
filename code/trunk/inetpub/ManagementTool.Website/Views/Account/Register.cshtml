@@ -8,23 +8,50 @@
 
 @using (Html.BeginForm("CreateUser", "Account", FormMethod.Post))
 {
-@Html.LabelFor(l => l.FirstName, "First Name")
-@Html.TextBoxFor(l => l.FirstName)
+    <div>
+        <fieldset>
+            <legend>Account Information</legend>
+            <div class="editor-label">
+                @Html.LabelFor(l => l.FirstName, "First Name")
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(l => l.FirstName)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(l => l.LastName, "Last Name")
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(l => l.LastName)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(l => l.CompanyId, "Company Id")
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(l => l.CompanyId)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(l => l.Email, "Email")
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(l => l.Email)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(l => l.Password, "Password")
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(l => l.Password)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(l => l.VerifyPassword, "Confirm Password")
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(l => l.VerifyPassword)
+            </div>
 
-@Html.LabelFor(l => l.LastName, "Last Name")
-@Html.TextBoxFor(l => l.LastName)
+            <p>
+                <input type="submit" value="submit" />
+            </p>
 
-@Html.LabelFor(l => l.CompanyId, "Company Id")
-@Html.TextBoxFor(l => l.CompanyId)
-
-@Html.LabelFor(l => l.Email, "Email")
-@Html.TextBoxFor(l => l.Email)
-
-@Html.LabelFor(l => l.Password, "Password")
-@Html.PasswordFor(l => l.Password)
-
-@Html.LabelFor(l => l.VerifyPassword, "Confirm Password")
-@Html.PasswordFor(l => l.VerifyPassword)
-
-    <input type="submit" value="submit" />
+        </fieldset>
+    </div>
 }

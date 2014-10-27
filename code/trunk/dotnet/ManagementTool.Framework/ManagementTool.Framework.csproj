@@ -77,12 +77,18 @@
     <Compile Include="DBModels\Project.cs">
       <DependentUpon>ManagementToolMaster.tt</DependentUpon>
     </Compile>
+    <Compile Include="DBModels\Requirement.cs">
+      <DependentUpon>ManagementToolMaster.tt</DependentUpon>
+    </Compile>
     <Compile Include="DBModels\Task.cs">
       <DependentUpon>ManagementToolMaster.tt</DependentUpon>
     </Compile>
     <Compile Include="DBModels\User.cs">
       <DependentUpon>ManagementToolMaster.tt</DependentUpon>
     </Compile>
+    <Compile Include="Enums\RiskCategory.cs" />
+    <Compile Include="Enums\Roles.cs" />
+    <Compile Include="Enums\Status.cs" />
     <Compile Include="Mediators\ProjectMediator.cs" />
     <Compile Include="Mediators\TaskMediator.cs" />
     <Compile Include="Mediators\UserMediator.cs" />

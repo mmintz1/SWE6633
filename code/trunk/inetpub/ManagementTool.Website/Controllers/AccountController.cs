@@ -61,5 +61,11 @@ namespace ManagementTool.Website.Controllers
             return Redirect("/");
         }
 
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return Redirect("/");
+        }
+
     }
 }

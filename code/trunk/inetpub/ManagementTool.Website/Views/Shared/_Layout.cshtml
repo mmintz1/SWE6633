@@ -8,9 +8,28 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    @RenderBody()
+   <div class="page">
+        <div id="header">
+            <div id="title">
+                <h1>Management Tool Project</h1>
+            </div>
+            <div id="logindisplay">
+                @if (Request.IsAuthenticated) {
+                    @Html.ActionLink("Log Off", "Logout", "Account")
+                } else {
+                    @Html.ActionLink("Login", "Signin", "Account")
+                }
+            </div>
+        </div>
+        <div id="main">
+            @RenderBody()
 
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
+            @Scripts.Render("~/bundles/jquery")
+            @RenderSection("scripts", required: false)
+        </div>
+        <div id="footer">
+        </div>
+        
+    </div>
 </body>
 </html>

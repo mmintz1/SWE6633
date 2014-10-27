@@ -12,13 +12,12 @@ namespace ManagementTool.Framework.DBModels
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Requirement
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public int CompanyId { get; set; }
-        public string Role { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string Type { get; set; }
+        public int ProjectId { get; set; }
+        public int RequirementId { get; set; }
     }
 }

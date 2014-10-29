@@ -1,0 +1,56 @@
+﻿@model ManagementTool.Framework.Models.Requirement.RequirementVM
+@{
+    ViewBag.Title = "RequirementForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>RequirementForm</h2>
+
+@*@using (Html.BeginForm(@action, "Requirement", FormMethod.Post))
+{
+    <div>
+        <fieldset>
+            <legend></legend>
+            
+            <div class="editor-label">
+                @Html.LabelFor(l => l.Title, "Title")
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(l => l.Title)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(l => l.Description, "Description")
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(l => l.Description)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(l => l.Manager, "Project Manager")
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(l => l.Manager)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(l => l.DueDate, "Due Date")
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(l => l.DueDate)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(l => l.Status, "Status")
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(l => l.Status)
+            </div>
+
+            @Html.HiddenFor(l => l.Id)
+            
+            <p>
+                <input type="submit" value="submit" />
+            </p>
+        </fieldset>
+    </div>
+}*@

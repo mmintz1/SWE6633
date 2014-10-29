@@ -8,7 +8,7 @@ namespace ManagementTool.Framework.Enums
 {
     public enum RiskCategory
     {
-        ProjectManagement,
+        ProjecManagement,
         Testing,
         Coding
     }

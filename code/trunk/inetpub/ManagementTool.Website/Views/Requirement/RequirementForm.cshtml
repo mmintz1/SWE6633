@@ -2,11 +2,16 @@
 @{
     ViewBag.Title = "RequirementForm";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> items = new List<SelectListItem> {
+        new SelectListItem { Text = "Development", Value = "Development"},
+        new SelectListItem { Text = "Testing", Value = "Testing"},
+        new SelectListItem { Text = "Requirements", Value = "Requirements"}
+    };
 }
 
 <h2>RequirementForm</h2>
 
-@*@using (Html.BeginForm(@action, "Requirement", FormMethod.Post))
+@using (Html.BeginForm("AddRequirement", "Requirement", FormMethod.Post))
 {
     <div>
         <fieldset>
@@ -26,31 +31,19 @@
             </div>
 
             <div class="editor-label">
-                @Html.LabelFor(l => l.Manager, "Project Manager")
+                
+                @Html.LabelFor(l => l.Category, "Category")
             </div>
             <div class="editor-field">
-                @Html.TextBoxFor(l => l.Manager)
+                @Html.DropDownListFor(l => l.Category, new SelectList(Enum.GetValues(typeof(ManagementTool.Framework.Enums.RequirementCategory))))
             </div>
 
-            <div class="editor-label">
-                @Html.LabelFor(l => l.DueDate, "Due Date")
-            </div>
-            <div class="editor-field">
-                @Html.TextBoxFor(l => l.DueDate)
-            </div>
 
-            <div class="editor-label">
-                @Html.LabelFor(l => l.Status, "Status")
-            </div>
-            <div class="editor-field">
-                @Html.TextBoxFor(l => l.Status)
-            </div>
-
-            @Html.HiddenFor(l => l.Id)
+            @Html.HiddenFor(l => l.ProjectId)
             
             <p>
                 <input type="submit" value="submit" />
             </p>
         </fieldset>
     </div>
-}*@
+}

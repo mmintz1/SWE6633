@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -17,5 +18,15 @@ namespace ManagementTool.Framework.Data
         {
             return GetFirstOrDefault(user => user.Email == email) != null;
         }
+
+        public IEnumerable<DBModels.User> GetAllUsersInCompany(int companyId)
+        {
+            return Get(users => users.CompanyId == companyId);
+        }
+
+        //public IEnumerable<DBModels.User> GetAllUsersInProject(int projectId)
+        //{
+
+        //}
     }
 }

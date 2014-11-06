@@ -10,6 +10,7 @@ namespace ManagementTool.Framework.Enums
     {
         Open,
         Closed,
-        InProgress
+        InProgress,
+        Testing
     }
 }

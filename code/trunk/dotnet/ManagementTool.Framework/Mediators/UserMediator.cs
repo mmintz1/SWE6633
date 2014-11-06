@@ -7,6 +7,7 @@ using ManagementTool.Framework.Data;
 using ManagementTool.Framework.DBModels;
 using ManagementTool.Framework.Enums;
 using ManagementTool.Framework.Models.Account;
+using ManagementTool.Framework.Transformers;
 
 namespace ManagementTool.Framework.Mediators
 {
@@ -58,6 +59,38 @@ namespace ManagementTool.Framework.Mediators
                 return isAuthenticated;
             }
 
+        }
+
+        public CSUser GetUser(string email)
+        {
+            CSUser user = null;
+            using (var db = new ManagementToolEntities())
+            {
+                var resp = new UsersRepository(db);
+                var dbUser = resp.GetFirstOrDefault(u => u.Email == email);
+
+                UserTransformer transformer = new UserTransformer();
+                user = transformer.Transform(dbUser);
+
+            }
+            return user;
+        }
+
+        public List<CSUser> GetUsersByCompanyId(int companyId)
+        {
+            List<CSUser> users = null;
+            using (var db = new ManagementToolEntities())
+            {
+                var resp = new UsersRepository(db);
+                var dbUsers = resp.GetAllUsersInCompany(companyId);
+                if (dbUsers != null && dbUsers.Count() > 0)
+                {
+                    UserTransformer transformer = new UserTransformer();
+                    users = transformer.Transform(dbUsers);
+                }
+            }
+
+            return users;
         }
     }
 }

@@ -55,7 +55,9 @@ namespace ManagementTool.Website.Controllers
                     HttpContext.Response.Cookies.Add(cookie);
                 }
 
-                return Redirect("~/account/login");
+                Session["UserAccount"] = mediator.GetUser(user.Email);
+
+                return Redirect("~/project/index");
             }
 
             return Redirect("/");

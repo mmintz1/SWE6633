@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagementTool.Framework", "ManagementTool.Framework\ManagementTool.Framework.csproj", "{EDF259E4-15F6-4D49-9E6F-8EAD4B2DED08}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagementTool.Website", "..\inetpub\ManagementTool.Website\ManagementTool.Website.csproj", "{4283A46E-5792-455D-8943-BA8F45CD9DA5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EDF259E4-15F6-4D49-9E6F-8EAD4B2DED08} = {EDF259E4-15F6-4D49-9E6F-8EAD4B2DED08}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -45,6 +45,10 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -87,13 +91,14 @@
     <Compile Include="DBModels\User.cs">
       <DependentUpon>ManagementToolMaster.tt</DependentUpon>
     </Compile>
-    <Compile Include="Enums\RiskCategory.cs" />
+    <Compile Include="Enums\RequirementCategory.cs" />
     <Compile Include="Enums\Roles.cs" />
     <Compile Include="Enums\Status.cs" />
     <Compile Include="Mediators\ProjectMediator.cs" />
     <Compile Include="Mediators\RequirementMediator.cs" />
     <Compile Include="Mediators\TaskMediator.cs" />
     <Compile Include="Mediators\UserMediator.cs" />
+    <Compile Include="Models\Account\CSUser.cs" />
     <Compile Include="Models\Account\LoginVM.cs" />
     <Compile Include="Models\Account\RegisterVM.cs" />
     <Compile Include="Models\Project\ProjectVM.cs" />
@@ -102,6 +107,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transformers\ProjectTransformer.cs" />
     <Compile Include="Transformers\TaskTransformer.cs" />
+    <Compile Include="Transformers\UserTransformer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

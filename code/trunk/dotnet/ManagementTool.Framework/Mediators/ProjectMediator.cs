@@ -23,9 +23,9 @@ namespace ManagementTool.Framework.Mediators
                     Title = model.Title,
                     Description = model.Description,
                     ProjectManager = model.Manager,
-                    Status = model.Status,
+                    Status = model.Status.ToString(),
                     DueDate = model.DueDate,
-                    CompanyId = 1
+                    CompanyId = model.CompanyId
                 };
 
                 resp.Insert(project);
@@ -73,7 +73,7 @@ namespace ManagementTool.Framework.Mediators
                 dbProject.Description = model.Description;
                 dbProject.DueDate = model.DueDate;
                 dbProject.ProjectManager = model.Manager;
-                dbProject.Status = model.Status;
+                dbProject.Status = model.Status.ToString();
                 dbProject.Title = model.Title;
 
                 resp.Update(dbProject);

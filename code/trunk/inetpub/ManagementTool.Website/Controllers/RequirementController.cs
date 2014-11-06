@@ -16,13 +16,20 @@ namespace ManagementTool.Website.Controllers
             return View();
         }
 
+        public ActionResult CreateRequirement(int id)
+        {
+            RequirementVM model = new RequirementVM();
+            model.ProjectId = id;
+            return View("~/Views/Requirement/RequirementForm.cshtml", model);
+        }
+
         [HttpPost]
         public ActionResult AddRequirement(RequirementVM model)
         {
             var mediator = new RequirementMediator();
             mediator.CreateRequirement(model);
 
-            return View();
+            return Redirect("/project/index");
         }
 
     }

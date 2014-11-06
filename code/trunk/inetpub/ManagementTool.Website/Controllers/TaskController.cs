@@ -52,5 +52,13 @@ namespace ManagementTool.Website.Controllers
             return Redirect("/");
         }
 
+        public ActionResult TaskDetails(int id)
+        {
+            var model = new TaskVM();
+            var mediator = new TaskMediator();
+            model = mediator.GetTask(id);
+            return View("~/Views/Task/TaskDetail.cshtml", model);
+        }
+
     }
 }

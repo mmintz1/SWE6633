@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ManagementTool.Framework.DBModels;
+using ManagementTool.Framework.Enums;
 using ManagementTool.Framework.Models.Project;
 
 namespace ManagementTool.Framework.Transformers
@@ -19,7 +20,7 @@ namespace ManagementTool.Framework.Transformers
                 project.DueDate = model.DueDate;
                 project.Id = (int)model.ProjectID;
                 project.Manager = model.ProjectManager;
-                project.Status = model.Status;
+                project.Status = (Status)Enum.Parse(typeof(Status), model.Status);
                 project.Title = model.Title;
                 project.CompanyId = model.CompanyId;
             }

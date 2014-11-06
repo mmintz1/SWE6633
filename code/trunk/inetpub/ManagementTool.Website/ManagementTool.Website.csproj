@@ -46,9 +46,6 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\..\dotnet\packages\EntityFramework.6.1.2-beta1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="ManagementTool.Framework">
-      <HintPath>..\..\dotnet\ManagementTool.Framework\bin\Debug\ManagementTool.Framework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -243,6 +240,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\dotnet\ManagementTool.Framework\ManagementTool.Framework.csproj">
+      <Project>{edf259e4-15f6-4d49-9e6f-8ead4b2ded08}</Project>
+      <Name>ManagementTool.Framework</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -11,7 +11,7 @@ namespace ManagementTool.Framework.Models.Requirement
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public RiskCategory Category { get; set; }
+        public RequirementCategory Category { get; set; }
         public int ProjectId { get; set; }
     }
 }

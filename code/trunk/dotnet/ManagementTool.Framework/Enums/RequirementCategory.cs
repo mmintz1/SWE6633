@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace ManagementTool.Framework.Enums
 {
-    public enum RiskCategory
+    public enum RequirementCategory
     {
-        ProjecManagement,
+        Requirements,
+        Design,
         Testing,
-        Coding
+        Coding,
+        Management
     }
 }

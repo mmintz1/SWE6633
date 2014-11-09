@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ManagementTool.Framework.DBModels;
+using ManagementTool.Framework.Enums;
 using ManagementTool.Framework.Models.Task;
 
 namespace ManagementTool.Framework.Transformers
@@ -19,7 +20,7 @@ namespace ManagementTool.Framework.Transformers
                 task.Description = model.Description;
                 task.DueDate = model.DueDate;
                 task.Id = model.TaskID;
-                task.Status = model.Status;
+                task.Status = (Status)Enum.Parse(typeof(Status), model.Status);
                 task.ProjectId = model.ProjectId;
                 task.TaskHours = model.ExpendedHours;
                 task.Category = model.Category;

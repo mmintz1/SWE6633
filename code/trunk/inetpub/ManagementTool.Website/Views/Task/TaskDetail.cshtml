@@ -41,6 +41,7 @@
         @Html.DisplayFor(l => l.TaskHours)
 
         @Html.ActionLink("Edit", "EditTask", new { controller = "task", id = Model.Id})
+        @Html.ActionLink("Cancel", "Index", new { controller = "task", id = Model.ProjectId})
     </tr>
 
 

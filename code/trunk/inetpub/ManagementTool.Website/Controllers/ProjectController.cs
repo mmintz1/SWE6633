@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ManagementTool.Framework.Helpers;
 using ManagementTool.Framework.Mediators;
 using ManagementTool.Framework.Models.Account;
 using ManagementTool.Framework.Models.Project;
 
 namespace ManagementTool.Website.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class ProjectController : Controller
     {
         //
@@ -27,7 +28,7 @@ namespace ManagementTool.Website.Controllers
         public ActionResult CreateProject(int Id)
         {
             var projectModel = new ProjectVM();
-            projectModel.ProjectManagers = CreateUserDropdownList(Id);
+            projectModel.ProjectManagers = HelperFunctions.CreateUserDropdownList();
             projectModel.CompanyId = Id;
 
             ViewBag.ControllerAction = "AddProject";
@@ -50,6 +51,7 @@ namespace ManagementTool.Website.Controllers
             ViewBag.PageTitle = "Edit Project";
             var mediator = new ProjectMediator();
             projectModel = mediator.GetProject(id);
+            projectModel.ProjectManagers = HelperFunctions.CreateUserDropdownList();
             return View("~/Views/Project/ProjectForm.cshtml", projectModel);
         }
 
@@ -69,17 +71,17 @@ namespace ManagementTool.Website.Controllers
             return View("~/Views/Project/ProjectDetail.cshtml", model);
         }
 
-        public List<SelectListItem> CreateUserDropdownList(int id)
-        {
-            var mediator = new UserMediator();
-            var users = mediator.GetUsersByCompanyId(id);
-            var list = new List<SelectListItem>();
-            foreach (var user in users)
-            {
-                list.Add(new SelectListItem { Text = user.FullName, Value = user.Email });
-            }
+        //public List<SelectListItem> CreateUserDropdownList(int id)
+        //{
+        //    var mediator = new UserMediator();
+        //    var users = mediator.GetUsersByCompanyId(id);
+        //    var list = new List<SelectListItem>();
+        //    foreach (var user in users)
+        //    {
+        //        list.Add(new SelectListItem { Text = user.FullName, Value = user.FullName });
+        //    }
 
-            return list;
-        }
+        //    return list;
+        //}
     }
 }

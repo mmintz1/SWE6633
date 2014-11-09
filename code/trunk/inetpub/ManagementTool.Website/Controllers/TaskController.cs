@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ManagementTool.Framework.Helpers;
 using ManagementTool.Framework.Mediators;
 using ManagementTool.Framework.Models.Task;
 
 namespace ManagementTool.Website.Controllers
 {
+    [Authorize]
     public class TaskController : Controller
     {
-        //
-        // GET: /Task/
-
         public ActionResult Index(int id)
         {
             var mediator = new TaskMediator();
@@ -24,6 +23,7 @@ namespace ManagementTool.Website.Controllers
         {
             var taskModel = new TaskVM();
             ViewBag.ControllerAction = "AddTask";
+            taskModel.Users = HelperFunctions.CreateUserDropdownList();
             return View("~/Views/Task/TaskForm.cshtml", taskModel);
         }
 
@@ -41,6 +41,7 @@ namespace ManagementTool.Website.Controllers
             var mediator = new TaskMediator();
             ViewBag.ControllerAction = "EditTask";
             TaskVM taskModel = mediator.GetTask(id);
+            taskModel.Users = HelperFunctions.CreateUserDropdownList();
             return View("~/Views/Task/TaskForm.cshtml", taskModel);
         }
 

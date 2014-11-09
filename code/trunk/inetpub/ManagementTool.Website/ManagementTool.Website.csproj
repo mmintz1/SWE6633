@@ -233,6 +233,7 @@
     <Content Include="Views\Project\ProjectDetail.cshtml" />
     <Content Include="Views\Task\TaskDetail.cshtml" />
     <Content Include="Views\Requirement\RequirementForm.cshtml" />
+    <Content Include="Views\Requirement\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

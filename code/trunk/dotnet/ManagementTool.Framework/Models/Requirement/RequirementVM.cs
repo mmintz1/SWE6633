@@ -13,5 +13,6 @@ namespace ManagementTool.Framework.Models.Requirement
         public string Description { get; set; }
         public RequirementCategory Category { get; set; }
         public int ProjectId { get; set; }
+        public int Id { get; set; }
     }
 }

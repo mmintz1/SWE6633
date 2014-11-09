@@ -1,0 +1,42 @@
+﻿@model List<ManagementTool.Framework.Models.Requirement.RequirementVM>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table>
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Due Date
+        </th>
+        <th>
+            Project Manager
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(itmodelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditRequirement", new { controller = "Requirement", id = item.Id }) |
+            @Html.ActionLink("Details", "RequirementDetails", new { controller = "Requirement", id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

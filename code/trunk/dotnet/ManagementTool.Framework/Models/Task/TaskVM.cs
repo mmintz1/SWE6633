@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
+using ManagementTool.Framework.Enums;
 
 namespace ManagementTool.Framework.Models.Task
 {
@@ -13,8 +15,10 @@ namespace ManagementTool.Framework.Models.Task
         public int Id { get; set; }
         public DateTime DueDate { get; set; }
         public string Category { get; set; }
-        public string Status { get; set; }
+        public Status Status { get; set; }
         public double TaskHours { get; set; }
         public int ProjectId { get; set; }
+        public List<SelectListItem> Users { get; set; }
+        public string Developer { get; set; }
     }
 }

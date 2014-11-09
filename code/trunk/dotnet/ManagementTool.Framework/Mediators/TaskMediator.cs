@@ -23,7 +23,7 @@ namespace ManagementTool.Framework.Mediators
                     Title = model.Title,
                     Description = model.Description,
                     DueDate = model.DueDate,
-                    Status = model.Status,
+                    Status = model.Status.ToString(),
                     ProjectId = 1,
                     ExpendedHours = 0,
                     Category = model.Category
@@ -76,7 +76,7 @@ namespace ManagementTool.Framework.Mediators
                 dbTask.Description = model.Description;
                 dbTask.DueDate = model.DueDate;
                 dbTask.ExpendedHours += model.TaskHours;
-                dbTask.Status = model.Status;
+                dbTask.Status = model.Status.ToString();
                 dbTask.Title = model.Title;
 
                 resp.Update(dbTask);

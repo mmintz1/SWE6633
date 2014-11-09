@@ -1,17 +1,14 @@
 ﻿@model ManagementTool.Framework.Models.Requirement.RequirementVM
 @{
-    ViewBag.Title = "RequirementForm";
+    var action = (string)ViewBag.ControllerAction;
     Layout = "~/Views/Shared/_Layout.cshtml";
-    List<SelectListItem> items = new List<SelectListItem> {
-        new SelectListItem { Text = "Development", Value = "Development"},
-        new SelectListItem { Text = "Testing", Value = "Testing"},
-        new SelectListItem { Text = "Requirements", Value = "Requirements"}
+    
     };
 }
 
 <h2>RequirementForm</h2>
 
-@using (Html.BeginForm("AddRequirement", "Requirement", FormMethod.Post))
+@using (Html.BeginForm(@action, "Requirement", FormMethod.Post))
 {
     <div>
         <fieldset>
@@ -40,9 +37,11 @@
 
 
             @Html.HiddenFor(l => l.ProjectId)
+            @Html.HiddenFor(l => l.Id)
             
             <p>
                 <input type="submit" value="submit" />
+                @Html.ActionLink("Cancel", "Index", new { controller = "Requirement", id = Model.ProjectId })
             </p>
         </fieldset>
     </div>

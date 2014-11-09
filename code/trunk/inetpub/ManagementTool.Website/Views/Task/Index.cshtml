@@ -44,6 +44,7 @@
         <td>
             @Html.ActionLink("Edit", "EditTask", new { controller = "Task", id = item.Id }) |
             @Html.ActionLink("Details", "TaskDetails", new { controller = "Task", id = item.Id }) |
+            @Html.ActionLink("Cancel", "Index", new { controller = "Project" }) |
         </td>
     </tr>
 }

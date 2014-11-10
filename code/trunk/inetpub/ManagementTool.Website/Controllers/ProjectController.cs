@@ -60,7 +60,7 @@ namespace ManagementTool.Website.Controllers
         {
             var mediator = new ProjectMediator();
             mediator.UpdateProject(model);
-            return Redirect("/");
+            return Redirect("/project/index");
         }
 
         public ActionResult ProjectDetails(int id)

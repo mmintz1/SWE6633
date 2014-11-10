@@ -33,7 +33,8 @@ namespace ManagementTool.Website.Controllers
             var mediator = new TaskMediator();
 
             mediator.CreateTask(task);
-            return Redirect("/");
+            var url = string.Format("/task/index/{0}", task.ProjectId);
+            return Redirect(url);
         }
 
         public ActionResult EditTask(int id)
@@ -50,7 +51,8 @@ namespace ManagementTool.Website.Controllers
         {
             var mediator = new TaskMediator();
             mediator.UpdateTask(model);
-            return Redirect("/");
+            var url = string.Format("/task/index/{0}", model.ProjectId);
+            return Redirect(url);
         }
 
         public ActionResult TaskDetails(int id)

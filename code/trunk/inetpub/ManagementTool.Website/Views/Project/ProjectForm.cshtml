@@ -7,7 +7,7 @@
 
 <h2>@title</h2>
 
-@using (Html.BeginForm(@action, "Project", FormMethod.Post))
+@using (Html.BeginForm(@action, "Project", FormMethod.Post, new { @class = "management-form" } ))
 {
     <div>
         <fieldset>
@@ -17,13 +17,13 @@
                 @Html.LabelFor(l => l.Title, "Title")
             </div>
             <div class="editor-field">
-                @Html.TextBoxFor(l => l.Title)
+                @Html.TextBoxFor(l => l.Title, new { required = "" } )
             </div>
             <div class="editor-label">
                 @Html.LabelFor(l => l.Description, "Description")
             </div>
             <div class="editor-field">
-                @Html.TextAreaFor(l => l.Description)
+                @Html.TextAreaFor(l => l.Description, new { required = "" } )
             </div>
 
             <div class="editor-label">
@@ -37,7 +37,7 @@
                 @Html.LabelFor(l => l.DueDate, "Due Date")
             </div>
             <div class="editor-field">
-                @Html.TextBoxFor(l => l.DueDate)
+                @Html.TextBoxFor(l => l.DueDate, new { required = "" } )
             </div>
 
             <div class="editor-label">
@@ -57,3 +57,14 @@
         </fieldset>
     </div>
 }
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#DueDate').Zebra_DatePicker({
+            direction: true,
+            format: 'm/d/Y',
+            show_icon: false
+        });
+
+        $('.management-form').validate();
+    });
+</script>

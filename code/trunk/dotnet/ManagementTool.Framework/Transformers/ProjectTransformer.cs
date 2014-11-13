@@ -23,6 +23,7 @@ namespace ManagementTool.Framework.Transformers
                 project.Status = (Status)Enum.Parse(typeof(Status), model.Status);
                 project.Title = model.Title;
                 project.CompanyId = model.CompanyId;
+                project.ProjectEmployees = model.TeamMembers.Split(';');
             }
 
             return project;

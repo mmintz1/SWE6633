@@ -21,5 +21,6 @@ namespace ManagementTool.Framework.DBModels
         public string ProjectManager { get; set; }
         public System.DateTime DueDate { get; set; }
         public int CompanyId { get; set; }
+        public string TeamMembers { get; set; }
     }
 }

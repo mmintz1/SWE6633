@@ -15,37 +15,37 @@
                 @Html.LabelFor(l => l.FirstName, "First Name")
             </div>
             <div class="editor-field">
-                @Html.TextBoxFor(l => l.FirstName)
+                @Html.TextBoxFor(l => l.FirstName, new { required = "" })
             </div>
             <div class="editor-label">
                 @Html.LabelFor(l => l.LastName, "Last Name")
             </div>
             <div class="editor-field">
-                @Html.TextBoxFor(l => l.LastName)
+                @Html.TextBoxFor(l => l.LastName, new { required = "" })
             </div>
             <div class="editor-label">
                 @Html.LabelFor(l => l.CompanyId, "Company Id")
             </div>
             <div class="editor-field">
-                @Html.TextBoxFor(l => l.CompanyId)
+                @Html.TextBoxFor(l => l.CompanyId, new { required = "" })
             </div>
             <div class="editor-label">
                 @Html.LabelFor(l => l.Email, "Email")
             </div>
             <div class="editor-field">
-                @Html.TextBoxFor(l => l.Email)
+                @Html.TextBoxFor(l => l.Email, new { required = "" })
             </div>
             <div class="editor-label">
                 @Html.LabelFor(l => l.Password, "Password")
             </div>
             <div class="editor-field">
-                @Html.PasswordFor(l => l.Password)
+                @Html.PasswordFor(l => l.Password, new { required = "" })
             </div>
             <div class="editor-label">
                 @Html.LabelFor(l => l.VerifyPassword, "Confirm Password")
             </div>
             <div class="editor-field">
-                @Html.PasswordFor(l => l.VerifyPassword)
+                @Html.PasswordFor(l => l.VerifyPassword, new { required = "" })
             </div>
 
             <p>
@@ -56,3 +56,7 @@
         </fieldset>
     </div>
 }
+
+<script type="text/javascript">
+    $('.management-form').validate();
+</script>

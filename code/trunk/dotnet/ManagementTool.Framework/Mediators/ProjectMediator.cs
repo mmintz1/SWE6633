@@ -12,7 +12,7 @@ namespace ManagementTool.Framework.Mediators
 {
     public class ProjectMediator
     {
-        public void CreateProject(ProjectVM model)
+        public bool CreateProject(ProjectVM model)
         {
             using (var db = new ManagementToolEntities())
             {
@@ -25,11 +25,14 @@ namespace ManagementTool.Framework.Mediators
                     ProjectManager = model.Manager,
                     Status = model.Status.ToString(),
                     DueDate = model.DueDate,
-                    CompanyId = model.CompanyId
+                    CompanyId = model.CompanyId,
+                    TeamMembers = string.Join(";", model.ProjectEmployees)
                 };
 
                 resp.Insert(project);
-                db.SaveChanges();
+                var success = db.SaveChanges() > 0;
+
+                return success;
             }
         }
 
@@ -77,7 +80,7 @@ namespace ManagementTool.Framework.Mediators
                 dbProject.Title = model.Title;
 
                 resp.Update(dbProject);
-                var success = db.SaveChanges();
+                var success = db.SaveChanges() > 0;
                 
             }
         }

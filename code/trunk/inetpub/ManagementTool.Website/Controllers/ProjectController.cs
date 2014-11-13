@@ -28,9 +28,10 @@ namespace ManagementTool.Website.Controllers
         public ActionResult CreateProject(int Id)
         {
             var projectModel = new ProjectVM();
-            projectModel.ProjectManagers = HelperFunctions.CreateUserDropdownList();
+            var uMediator = new UserMediator();
+            projectModel.CompanyEmployees = HelperFunctions.CreateUserDropdownList();
             projectModel.CompanyId = Id;
-
+            projectModel.Users = uMediator.GetUsersByCompanyId(Id);
             ViewBag.ControllerAction = "AddProject";
             ViewBag.PageTitle = "Create Project";
             return View("~/Views/Project/ProjectForm.cshtml", projectModel);
@@ -40,8 +41,16 @@ namespace ManagementTool.Website.Controllers
         public ActionResult AddProject(ProjectVM project)
         {
             var mediator = new ProjectMediator();
-            mediator.CreateProject(project);
-            return Redirect("~/project/index");
+            bool success = mediator.CreateProject(project);
+            if (success)
+                return Redirect("~/project/index");
+            else
+            {
+                ViewBag.ControllerAction = "AddProject";
+                ViewBag.PageTitle = "Create Project";
+                ModelState.AddModelError("ErrorMessage", "Unable to create project. Please verify input.");
+                return View("~/Views/Project/ProjectForm.cshtml", project);
+            }
         }
 
         public ActionResult EditProject(int id)
@@ -50,8 +59,10 @@ namespace ManagementTool.Website.Controllers
             ViewBag.ControllerAction = "UpdateProject";
             ViewBag.PageTitle = "Edit Project";
             var mediator = new ProjectMediator();
+            var uMediator = new UserMediator();
             projectModel = mediator.GetProject(id);
-            projectModel.ProjectManagers = HelperFunctions.CreateUserDropdownList();
+            projectModel.CompanyEmployees = HelperFunctions.CreateUserDropdownList();
+            projectModel.Users = uMediator.GetUsersByCompanyId(id);
             return View("~/Views/Project/ProjectForm.cshtml", projectModel);
         }
 

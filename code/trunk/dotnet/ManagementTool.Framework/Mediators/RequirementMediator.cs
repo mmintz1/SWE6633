@@ -27,7 +27,7 @@ namespace ManagementTool.Framework.Mediators
                 };
 
                 resp.Insert(requirement);
-                var success = db.SaveChanges();
+                var success = db.SaveChanges() > 0;
             }
         }
 
@@ -75,7 +75,7 @@ namespace ManagementTool.Framework.Mediators
                 requirement.Title = model.Title;
 
                 resp.Update(requirement);
-                db.SaveChanges();
+                var success = db.SaveChanges() > 0;
             }
         }
     }

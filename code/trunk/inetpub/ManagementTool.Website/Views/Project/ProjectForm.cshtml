@@ -12,7 +12,7 @@
     <div>
         <fieldset>
             <legend></legend>
-            
+            @Html.ValidationMessage("ErrorMessage")
             <div class="editor-label">
                 @Html.LabelFor(l => l.Title, "Title")
             </div>
@@ -30,14 +30,19 @@
                 @Html.LabelFor(l => l.Manager, "Project Manager")
             </div>
             <div class="editor-field">
-                @Html.DropDownListFor(l => l.Manager, Model.ProjectManagers)
+                @Html.DropDownListFor(l => l.Manager, Model.CompanyEmployees)
             </div>
-
             <div class="editor-label">
-                @Html.LabelFor(l => l.DueDate, "Due Date")
+                @Html.LabelFor(l => l.ProjectEmployees, "Project Members")
             </div>
             <div class="editor-field">
-                @Html.TextBoxFor(l => l.DueDate, new { required = "" } )
+                @Html.ListBoxFor(l => l.ProjectEmployees, new MultiSelectList(Model.Users, "FullName", "FullName", Model.ProjectEmployees.AsEnumerable()))
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(l => l.Date, "Due Date")
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(l => l.Date, new { required = "" } )
             </div>
 
             <div class="editor-label">
@@ -49,6 +54,7 @@
 
             @Html.HiddenFor(l => l.Id)
             @Html.HiddenFor(l => l.CompanyId)
+            @Html.HiddenFor(l => l.CompanyEmployees)
             
             <p>
                 <input type="submit" value="submit" />

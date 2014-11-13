@@ -32,8 +32,13 @@ namespace ManagementTool.Framework.Mediators
                         CompanyId = reg.CompanyId,
                         Role = Roles.Employee.ToString()
                     };
-                    var mine = resp.Insert(regUser);
+                    resp.Insert(regUser);
                     var success = db.SaveChanges() > 0;
+                }
+
+                else
+                {
+
                 }
             }
         }

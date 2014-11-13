@@ -31,7 +31,7 @@ namespace ManagementTool.Framework.Mediators
                 };
 
                 resp.Insert(task);
-                var success = db.SaveChanges();
+                var success = db.SaveChanges() > 0;
             }
         }
 
@@ -80,7 +80,7 @@ namespace ManagementTool.Framework.Mediators
                 dbTask.Title = model.Title;
 
                 resp.Update(dbTask);
-                var success = db.SaveChanges();
+                var success = db.SaveChanges() > 0;
 
             }
         }

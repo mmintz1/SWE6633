@@ -24,7 +24,7 @@ namespace ManagementTool.Framework.Mediators
                     Description = model.Description,
                     ProjectManager = model.Manager,
                     Status = model.Status.ToString(),
-                    DueDate = model.DueDate,
+                    DueDate = DateTime.Parse(model.DueDate),
                     CompanyId = model.CompanyId,
                     TeamMembers = string.Join(";", model.ProjectEmployees)
                 };
@@ -66,23 +66,25 @@ namespace ManagementTool.Framework.Mediators
             return model;
         }
 
-        public void UpdateProject(ProjectVM model)
+        public bool UpdateProject(ProjectVM model)
         {
+            bool success = false;
             using (var db = new ManagementToolEntities())
             {
                 var resp = new ProjectRepository(db);
                 Project dbProject = resp.GetFirstOrDefault(p => p.ProjectID == model.Id);
 
                 dbProject.Description = model.Description;
-                dbProject.DueDate = model.DueDate;
+                dbProject.DueDate = DateTime.Parse(model.DueDate);
                 dbProject.ProjectManager = model.Manager;
                 dbProject.Status = model.Status.ToString();
                 dbProject.Title = model.Title;
 
                 resp.Update(dbProject);
-                var success = db.SaveChanges() > 0;
-                
+                success = db.SaveChanges() > 0;
             }
+
+            return success;
         }
     }
 }

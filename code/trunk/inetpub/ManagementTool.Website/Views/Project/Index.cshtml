@@ -24,13 +24,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(itmodelItem => item.Title)
+            @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @item.DueDate.ToShortDateString()
+            @Html.DisplayFor(modelItem => item.DueDate)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Manager)

@@ -11,7 +11,7 @@
     <div>
         <fieldset>
             <legend></legend>
-        
+            @Html.ValidationMessage("ErrorMessage")
             <div class="editor-label">
                 @Html.LabelFor(l => l.Title, "Title")
             </div>
@@ -51,7 +51,7 @@
                 @Html.LabelFor(l => l.Developer, "Assigned To")
             </div>
             <div class="editor-field">
-                @Html.DropDownListFor(l => l.Developer, Model.Users)
+                @Html.DropDownListFor(l => l.Developer, new SelectList(Model.CompanyEmployees, "FullName", "FullName"))
             </div>
 
             @Html.HiddenFor(l => l.Id)

@@ -15,13 +15,11 @@ namespace ManagementTool.Framework.Models.Project
         public string Title { get; set; }
         public string Description { get; set; }
         public Status Status { get; set; }
-        public DateTime DueDate { get; set; }
-        public string Date { get; set; }
+        public string DueDate { get; set; }
         public int Id { get; set; }
         public string Manager { get; set; }
         public int CompanyId { get; set; }
-        public List<SelectListItem> CompanyEmployees { get; set; }
+        public List<CSUser> CompanyEmployees { get; set; }
         public string[] ProjectEmployees { get; set; }
-        public List<CSUser> Users { get; set; }
     }
 }

@@ -6,16 +6,17 @@
 
 <h2>Login</h2>
 
-@using (Html.BeginForm("SignIn", "Account", FormMethod.Post, new { @class = "management-form" }))
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "management-form" }))
 {
     <div>
         <fieldset>
             <legend>Account Information</legend>
+            @Html.ValidationMessage("ErrorMessage")
             <div class="editor-label">
                 @Html.LabelFor(l => l.Email, "Email")
             </div>
             <div class="editor-field">
-                @Html.TextBoxFor(l => l.Email, new { required = "" })
+                @Html.TextBoxFor(l => l.Email, new { required = "", type = "email" })
             </div>
             <div class="editor-label">
                 @Html.LabelFor(l => l.Password, "Password")
@@ -32,5 +33,5 @@
 }
 
 <script type="text/javascript">
-    $('.management-form').validate();
+    //$('.management-form').validate();
 </script>

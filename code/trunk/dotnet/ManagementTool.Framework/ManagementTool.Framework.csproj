@@ -96,6 +96,7 @@
     <Compile Include="Enums\Roles.cs" />
     <Compile Include="Enums\Status.cs" />
     <Compile Include="Helpers\HelperFunctions.cs" />
+    <Compile Include="Helpers\SessionHelper.cs" />
     <Compile Include="Mediators\ProjectMediator.cs" />
     <Compile Include="Mediators\RequirementMediator.cs" />
     <Compile Include="Mediators\TaskMediator.cs" />

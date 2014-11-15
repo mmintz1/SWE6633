@@ -18,7 +18,7 @@ namespace ManagementTool.Framework.Transformers
             {
                 task.Title = model.Title;
                 task.Description = model.Description;
-                task.DueDate = model.DueDate;
+                task.DueDate = model.DueDate.ToString("MM/dd/yyyy");
                 task.Id = model.TaskID;
                 task.Status = (Status)Enum.Parse(typeof(Status), model.Status);
                 task.ProjectId = model.ProjectId;

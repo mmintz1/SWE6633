@@ -19,28 +19,44 @@ namespace ManagementTool.Website.Controllers
             return Login();
         }
 
+        [HttpGet]
         public ActionResult Login()
         {
             var loginModel = new LoginVM();
             return View("~/Views/Account/Login.cshtml", loginModel);
         }
 
+        [HttpGet]
         public ActionResult Register()
         {
             var registerModel = new RegisterVM();
             return View("~/Views/Account/Register.cshtml", registerModel);
         }
 
-        public ActionResult CreateUser(RegisterVM user)
+        [HttpPost]
+        public ActionResult Register(RegisterVM user)
         {
             UserMediator mediator = new UserMediator();
+            if (user.Password != user.VerifyPassword)
+                ModelState.AddModelError("ErrorMessage", "Passwords don't match");
 
-            mediator.RegisterUser(user);
 
-            return Redirect("/");
+            if (ModelState.IsValid)
+            {
+                bool success = mediator.RegisterUser(user);
+
+                if (success)
+                    return Redirect("/");
+                else
+                    ModelState.AddModelError("ErrorMessage", "Unable to create account");
+                
+            }
+
+            return PartialView("~/Views/Account/Register.cshtml", user);
         }
 
-        public ActionResult SignIn(LoginVM user)
+        [HttpPost]
+        public ActionResult Login(LoginVM user)
         {
             UserMediator mediator = new UserMediator();
 
@@ -59,8 +75,12 @@ namespace ManagementTool.Website.Controllers
 
                 return Redirect("~/project/index");
             }
+            else
+            {
+                ModelState.AddModelError("ErrorMessage", "Invalid credentials");
+            }
 
-            return Redirect("/");
+            return PartialView("~/Views/Account/Login.cshtml", user);
         }
 
         public ActionResult Logout()

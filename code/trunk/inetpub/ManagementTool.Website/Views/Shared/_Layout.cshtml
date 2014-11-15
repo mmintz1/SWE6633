@@ -18,7 +18,7 @@
                 @if (Request.IsAuthenticated) {
                     @Html.ActionLink("Log Off", "Logout", "Account")
                 } else {
-                    @Html.ActionLink("Login", "Signin", "Account")
+                    @Html.ActionLink("Login", "Login", "Account")
                 }
             </div>
         </div>
@@ -30,7 +30,7 @@
         </div>
         <div id="footer">
         </div>
-        
+        @Scripts.Render("~/bundles/custom")
     </div>
 </body>
 </html>

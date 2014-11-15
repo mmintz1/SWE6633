@@ -19,16 +19,17 @@ namespace ManagementTool.Website.Controllers
             return View(model);
         }
 
+        [HttpGet]
         public ActionResult CreateRequirement(int id)
         {
             RequirementVM model = new RequirementVM();
             model.ProjectId = id;
-            ViewBag.ControllerAction = "AddRequirement";
+            ViewBag.ControllerAction = "CreateRequirement";
             return View("~/Views/Requirement/RequirementForm.cshtml", model);
         }
 
         [HttpPost]
-        public ActionResult AddRequirement(RequirementVM model)
+        public ActionResult CreateRequirement(RequirementVM model)
         {
             var mediator = new RequirementMediator();
             mediator.CreateRequirement(model);
@@ -40,12 +41,12 @@ namespace ManagementTool.Website.Controllers
         {
             var mediator = new RequirementMediator();
             var model = mediator.GetRequirement(id);
-            ViewBag.ControllerAction = "UpdateRequirement";
+            ViewBag.ControllerAction = "EditRequirement";
             return View("~/Views/Requirement/RequirementForm.cshtml", model);
         }
 
         [HttpPost]
-        public ActionResult UpdateRequirement(RequirementVM model)
+        public ActionResult EditRequirement(RequirementVM model)
         {
             var mediator = new RequirementMediator();
             mediator.UpdateRequirement(model);

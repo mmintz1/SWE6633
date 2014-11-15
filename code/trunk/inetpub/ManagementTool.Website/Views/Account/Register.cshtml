@@ -6,11 +6,12 @@
 
 <h2>Register</h2>
 
-@using (Html.BeginForm("CreateUser", "Account", FormMethod.Post))
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
     <div>
         <fieldset>
             <legend>Account Information</legend>
+            @Html.ValidationMessage("ErrorMessage")
             <div class="editor-label">
                 @Html.LabelFor(l => l.FirstName, "First Name")
             </div>

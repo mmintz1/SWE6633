@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ManagementTool.Framework.Data;
 using ManagementTool.Framework.DBModels;
 using ManagementTool.Framework.Enums;
+using ManagementTool.Framework.Helpers;
 using ManagementTool.Framework.Models.Account;
 using ManagementTool.Framework.Transformers;
 
@@ -13,8 +14,9 @@ namespace ManagementTool.Framework.Mediators
 {
     public class UserMediator
     {
-        public void RegisterUser(RegisterVM reg)
+        public bool RegisterUser(RegisterVM reg)
         {
+            var success = false;
             using (var db = new ManagementToolEntities())
             {
                 var resp = new UsersRepository(db);
@@ -25,7 +27,7 @@ namespace ManagementTool.Framework.Mediators
                 {
                     var regUser = new User
                     {
-                        Email = reg.Email,
+                        Email = reg.Email.Trim().ToLower(),
                         FirstName = reg.FirstName,
                         LastName = reg.LastName,
                         Password = reg.Password,
@@ -33,14 +35,11 @@ namespace ManagementTool.Framework.Mediators
                         Role = Roles.Employee.ToString()
                     };
                     resp.Insert(regUser);
-                    var success = db.SaveChanges() > 0;
-                }
-
-                else
-                {
-
+                    success = db.SaveChanges() > 0;
                 }
             }
+
+            return success;
         }
 
         public bool Authenticate(LoginVM user)
@@ -51,7 +50,7 @@ namespace ManagementTool.Framework.Mediators
 
                 bool isAuthenticated = false;
 
-                var account = resp.GetFirstOrDefault(u => u.Email == user.Email);
+                var account = resp.GetFirstOrDefault(u => u.Email.Trim().ToLower() == user.Email.Trim().ToLower());
 
                 if (account != null)
                 {
@@ -72,7 +71,7 @@ namespace ManagementTool.Framework.Mediators
             using (var db = new ManagementToolEntities())
             {
                 var resp = new UsersRepository(db);
-                var dbUser = resp.GetFirstOrDefault(u => u.Email == email);
+                var dbUser = resp.GetFirstOrDefault(u => u.Email.Trim().ToLower() == email.Trim().ToLower());
 
                 UserTransformer transformer = new UserTransformer();
                 user = transformer.Transform(dbUser);
@@ -96,6 +95,12 @@ namespace ManagementTool.Framework.Mediators
             }
 
             return users;
+        }
+
+        public List<CSUser> GetUsersByCompanyId()
+        {
+            var user = SessionHelper.GetUserSession();
+            return GetUsersByCompanyId(user.CompanyId);
         }
     }
 }

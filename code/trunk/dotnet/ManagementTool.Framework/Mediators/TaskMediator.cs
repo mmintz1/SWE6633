@@ -12,8 +12,9 @@ namespace ManagementTool.Framework.Mediators
 {
     public class TaskMediator
     {
-        public void CreateTask(TaskVM model)
+        public bool CreateTask(TaskVM model)
         {
+            bool success = false;
             using (var db = new ManagementToolEntities())
             {
                 var resp = new TaskRepository(db);
@@ -22,7 +23,7 @@ namespace ManagementTool.Framework.Mediators
                 {
                     Title = model.Title,
                     Description = model.Description,
-                    DueDate = model.DueDate,
+                    DueDate = DateTime.Parse(model.DueDate),
                     Status = model.Status.ToString(),
                     ProjectId = 1,
                     ExpendedHours = 0,
@@ -31,8 +32,10 @@ namespace ManagementTool.Framework.Mediators
                 };
 
                 resp.Insert(task);
-                var success = db.SaveChanges() > 0;
+                success = db.SaveChanges() > 0;
             }
+
+            return success;
         }
 
         public List<TaskVM> GetAllTasks(int projectId)
@@ -65,8 +68,9 @@ namespace ManagementTool.Framework.Mediators
             return model;
         }
 
-        public void UpdateTask(TaskVM model)
+        public bool UpdateTask(TaskVM model)
         {
+            bool success = false;
             using (var db = new ManagementToolEntities())
             {
                 var resp = new TaskRepository(db);
@@ -74,15 +78,17 @@ namespace ManagementTool.Framework.Mediators
 
                 dbTask.Category = model.Category;
                 dbTask.Description = model.Description;
-                dbTask.DueDate = model.DueDate;
+                dbTask.DueDate = DateTime.Parse(model.DueDate);
                 dbTask.ExpendedHours += model.TaskHours;
                 dbTask.Status = model.Status.ToString();
                 dbTask.Title = model.Title;
 
                 resp.Update(dbTask);
-                var success = db.SaveChanges() > 0;
+                success = db.SaveChanges() > 0;
 
             }
+
+            return success;
         }
     }
 }

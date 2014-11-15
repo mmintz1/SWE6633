@@ -19,40 +19,68 @@ namespace ManagementTool.Website.Controllers
             return View(projects);
         }
 
+        [HttpGet]
         public ActionResult CreateTask()
         {
             var taskModel = new TaskVM();
-            ViewBag.ControllerAction = "AddTask";
-            taskModel.Users = HelperFunctions.CreateUserDropdownList();
+            ViewBag.ControllerAction = "CreateTask";
+            var uMediator = new UserMediator();
+            taskModel.CompanyEmployees = uMediator.GetUsersByCompanyId();
             return View("~/Views/Task/TaskForm.cshtml", taskModel);
         }
 
         [HttpPost]
-        public ActionResult AddTask(TaskVM task)
+        public ActionResult CreateTask(TaskVM task)
         {
             var mediator = new TaskMediator();
 
-            mediator.CreateTask(task);
-            var url = string.Format("/task/index/{0}", task.ProjectId);
-            return Redirect(url);
+            var success = mediator.CreateTask(task);
+            if (success)
+            {
+                var url = string.Format("/task/index/{0}", task.ProjectId);
+                return Redirect(url);
+            }
+            else
+            {
+                var uMediator = new UserMediator();
+                task.CompanyEmployees = uMediator.GetUsersByCompanyId();
+                ViewBag.ControllerAction = "CreateTask";
+                ModelState.AddModelError("ErrorMessage", "Unable to create task");
+                return View("~/Views/Task/TaskForm.cshtml", task);
+            }
         }
 
+        [HttpGet]
         public ActionResult EditTask(int id)
         {
             var mediator = new TaskMediator();
             ViewBag.ControllerAction = "EditTask";
             TaskVM taskModel = mediator.GetTask(id);
-            taskModel.Users = HelperFunctions.CreateUserDropdownList();
+            var uMediator = new UserMediator();
+            
+            taskModel.CompanyEmployees = uMediator.GetUsersByCompanyId();
             return View("~/Views/Task/TaskForm.cshtml", taskModel);
         }
 
         [HttpPost]
-        public ActionResult UpdateTask(TaskVM model)
+        public ActionResult EditTask(TaskVM model)
         {
             var mediator = new TaskMediator();
-            mediator.UpdateTask(model);
-            var url = string.Format("/task/index/{0}", model.ProjectId);
-            return Redirect(url);
+            bool success = mediator.UpdateTask(model);
+            if (success)
+            {
+                var url = string.Format("/task/index/{0}", model.ProjectId);
+                return Redirect(url);
+            }
+            else
+            {
+                var uMediator = new UserMediator();
+
+                model.CompanyEmployees = uMediator.GetUsersByCompanyId();
+                ViewBag.ControllerAction = "EditTask";
+                ModelState.AddModelError("ErrorMessage", "Unable to update Task");
+                return View("~/Views/Task/TaskForm.cshtml", model);
+            }
         }
 
         public ActionResult TaskDetails(int id)

@@ -17,7 +17,7 @@ namespace ManagementTool.Framework.Transformers
             if (model != null)
             {
                 project.Description = model.Description;
-                project.DueDate = model.DueDate;
+                project.DueDate = model.DueDate.ToString("MM/dd/yyy");
                 project.Id = (int)model.ProjectID;
                 project.Manager = model.ProjectManager;
                 project.Status = (Status)Enum.Parse(typeof(Status), model.Status);

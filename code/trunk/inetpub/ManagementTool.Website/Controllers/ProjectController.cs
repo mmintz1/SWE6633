@@ -19,59 +19,77 @@ namespace ManagementTool.Website.Controllers
         public ActionResult Index()
         {
             var mediator = new ProjectMediator();
-
-            CSUser user =  (CSUser)Session["UserAccount"];
+            CSUser user = SessionHelper.GetUserSession();
             var projects = mediator.GetAllCompanyProjects(user.CompanyId);
             return View(projects);
         }
 
+        [HttpGet]
         public ActionResult CreateProject(int Id)
         {
             var projectModel = new ProjectVM();
             var uMediator = new UserMediator();
-            projectModel.CompanyEmployees = HelperFunctions.CreateUserDropdownList();
+            projectModel.CompanyEmployees = uMediator.GetUsersByCompanyId(Id);
             projectModel.CompanyId = Id;
-            projectModel.Users = uMediator.GetUsersByCompanyId(Id);
-            ViewBag.ControllerAction = "AddProject";
+            ViewBag.ControllerAction = "CreateProject";
             ViewBag.PageTitle = "Create Project";
             return View("~/Views/Project/ProjectForm.cshtml", projectModel);
         }
         
         [HttpPost]
-        public ActionResult AddProject(ProjectVM project)
+        public ActionResult CreateProject(ProjectVM project)
         {
             var mediator = new ProjectMediator();
+            var uMediator = new UserMediator();
+            if (string.IsNullOrWhiteSpace(project.DueDate))
+            {
+                ViewBag.ControllerAction = "CreateProject";
+                ViewBag.PageTitle = "Create Project";
+                ModelState.AddModelError("ErrorMessage", "Please select a Due Date");
+                project.CompanyEmployees = uMediator.GetUsersByCompanyId(project.CompanyId);
+                return View("~/Views/Project/ProjectForm.cshtml", project);
+            }
             bool success = mediator.CreateProject(project);
             if (success)
                 return Redirect("~/project/index");
             else
             {
-                ViewBag.ControllerAction = "AddProject";
+                ViewBag.ControllerAction = "CreateProject";
                 ViewBag.PageTitle = "Create Project";
                 ModelState.AddModelError("ErrorMessage", "Unable to create project. Please verify input.");
+                project.CompanyEmployees = uMediator.GetUsersByCompanyId(project.CompanyId);
                 return View("~/Views/Project/ProjectForm.cshtml", project);
             }
         }
 
+        [HttpGet]
         public ActionResult EditProject(int id)
         {
             var projectModel = new ProjectVM();
-            ViewBag.ControllerAction = "UpdateProject";
+            ViewBag.ControllerAction = "EditProject";
             ViewBag.PageTitle = "Edit Project";
             var mediator = new ProjectMediator();
             var uMediator = new UserMediator();
             projectModel = mediator.GetProject(id);
-            projectModel.CompanyEmployees = HelperFunctions.CreateUserDropdownList();
-            projectModel.Users = uMediator.GetUsersByCompanyId(id);
+            
+            projectModel.CompanyEmployees = uMediator.GetUsersByCompanyId(projectModel.CompanyId);
             return View("~/Views/Project/ProjectForm.cshtml", projectModel);
         }
 
         [HttpPost]
-        public ActionResult UpdateProject(ProjectVM model)
+        public ActionResult EditProject(ProjectVM model)
         {
             var mediator = new ProjectMediator();
-            mediator.UpdateProject(model);
-            return Redirect("/project/index");
+            bool success = mediator.UpdateProject(model);
+            if (success)
+                return Redirect("/project/index");
+            else
+            {
+                ModelState.AddModelError("ErrorMessage", "Unable to update project");
+                var uMediator = new UserMediator();
+                model.CompanyEmployees = uMediator.GetUsersByCompanyId(model.CompanyId);
+                return View("~/Views/Project/ProjectForm.cshtml", model);
+            }
         }
 
         public ActionResult ProjectDetails(int id)
@@ -81,18 +99,5 @@ namespace ManagementTool.Website.Controllers
             model = mediator.GetProject(id);
             return View("~/Views/Project/ProjectDetail.cshtml", model);
         }
-
-        //public List<SelectListItem> CreateUserDropdownList(int id)
-        //{
-        //    var mediator = new UserMediator();
-        //    var users = mediator.GetUsersByCompanyId(id);
-        //    var list = new List<SelectListItem>();
-        //    foreach (var user in users)
-        //    {
-        //        list.Add(new SelectListItem { Text = user.FullName, Value = user.FullName });
-        //    }
-
-        //    return list;
-        //}
     }
 }

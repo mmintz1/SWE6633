@@ -30,19 +30,19 @@
                 @Html.LabelFor(l => l.Manager, "Project Manager")
             </div>
             <div class="editor-field">
-                @Html.DropDownListFor(l => l.Manager, Model.CompanyEmployees)
+                @Html.DropDownListFor(l => l.Manager, new SelectList(Model.CompanyEmployees, "FullName", "FullName"))
             </div>
             <div class="editor-label">
                 @Html.LabelFor(l => l.ProjectEmployees, "Project Members")
             </div>
             <div class="editor-field">
-                @Html.ListBoxFor(l => l.ProjectEmployees, new MultiSelectList(Model.Users, "FullName", "FullName", Model.ProjectEmployees.AsEnumerable()))
+                @Html.ListBoxFor(l => l.ProjectEmployees, new MultiSelectList(Model.CompanyEmployees, "FullName", "FullName", Model.ProjectEmployees.AsEnumerable()), new { required = "" })
             </div>
             <div class="editor-label">
-                @Html.LabelFor(l => l.Date, "Due Date")
+                @Html.LabelFor(l => l.DueDate, "Due Date")
             </div>
             <div class="editor-field">
-                @Html.TextBoxFor(l => l.Date, new { required = "" } )
+                @Html.TextBoxFor(l => l.DueDate, new { required = "" } )
             </div>
 
             <div class="editor-label">
@@ -54,7 +54,6 @@
 
             @Html.HiddenFor(l => l.Id)
             @Html.HiddenFor(l => l.CompanyId)
-            @Html.HiddenFor(l => l.CompanyEmployees)
             
             <p>
                 <input type="submit" value="submit" />
@@ -63,14 +62,3 @@
         </fieldset>
     </div>
 }
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#DueDate').Zebra_DatePicker({
-            direction: true,
-            format: 'm/d/Y',
-            show_icon: false
-        });
-
-        $('.management-form').validate();
-    });
-</script>

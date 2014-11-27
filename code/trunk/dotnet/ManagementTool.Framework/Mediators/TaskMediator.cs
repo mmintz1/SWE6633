@@ -25,10 +25,10 @@ namespace ManagementTool.Framework.Mediators
                     Description = model.Description,
                     DueDate = DateTime.Parse(model.DueDate),
                     Status = model.Status.ToString(),
-                    ProjectId = 1,
-                    ExpendedHours = 0,
-                    Category = model.Category
-
+                    ProjectId = model.ProjectId,
+                    ExpendedHours = model.TaskHours,
+                    Category = model.Category,
+                    AssignedTo = model.Developer
                 };
 
                 resp.Insert(task);
@@ -79,9 +79,10 @@ namespace ManagementTool.Framework.Mediators
                 dbTask.Category = model.Category;
                 dbTask.Description = model.Description;
                 dbTask.DueDate = DateTime.Parse(model.DueDate);
-                dbTask.ExpendedHours += model.TaskHours;
+                dbTask.ExpendedHours = model.TaskHours;
                 dbTask.Status = model.Status.ToString();
                 dbTask.Title = model.Title;
+                dbTask.AssignedTo = model.Developer;
 
                 resp.Update(dbTask);
                 success = db.SaveChanges() > 0;

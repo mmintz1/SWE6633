@@ -25,23 +25,34 @@
         <th>
             Hours
         </th>
+        <th>
+
+        </th>
     </tr>
 
     <tr>
-        @Html.DisplayFor(l => l.Title)
-
-        @Html.DisplayFor(l => l.Description)
-
-        @Html.DisplayFor(l => l.Status)
-
-        @Html.DisplayFor(l => l.DueDate)
-
-        @Html.DisplayFor(l => l.Category)
-
-        @Html.DisplayFor(l => l.TaskHours)
-
-        @Html.ActionLink("Edit", "EditTask", new { controller = "task", id = Model.Id})
-        @Html.ActionLink("Cancel", "Index", new { controller = "task", id = Model.ProjectId})
+        <td>
+            @Html.DisplayFor(l => l.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(l => l.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(l => l.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(l => l.DueDate)
+        </td>
+        <td>
+            @Html.DisplayFor(l => l.Category)
+        </td>
+        <td>
+            @Html.DisplayFor(l => l.TaskHours)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditTask", new { controller = "task", id = Model.Id}) | 
+            @Html.ActionLink("Cancel", "Index", new { controller = "task", id = Model.ProjectId})
+        </td>
     </tr>
 
 

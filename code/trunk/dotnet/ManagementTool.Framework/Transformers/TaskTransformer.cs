@@ -24,6 +24,7 @@ namespace ManagementTool.Framework.Transformers
                 task.ProjectId = model.ProjectId;
                 task.TaskHours = model.ExpendedHours;
                 task.Category = model.Category;
+                task.Developer = model.AssignedTo;
             }
 
             return task;

@@ -22,5 +22,6 @@ namespace ManagementTool.Framework.DBModels
         public double ExpendedHours { get; set; }
         public string Category { get; set; }
         public int TaskID { get; set; }
+        public string AssignedTo { get; set; }
     }
 }

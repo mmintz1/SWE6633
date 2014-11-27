@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Tasks</h2>
 
 <table>
     <tr>
@@ -21,6 +21,9 @@
         </th>
         <th>
             Hours
+        </th>
+        <th>
+
         </th>
     </tr>
 
@@ -44,7 +47,7 @@
         <td>
             @Html.ActionLink("Edit", "EditTask", new { controller = "Task", id = item.Id }) |
             @Html.ActionLink("Details", "TaskDetails", new { controller = "Task", id = item.Id }) |
-            @Html.ActionLink("Cancel", "Index", new { controller = "Project" }) |
+            @Html.ActionLink("Cancel", "Index", new { controller = "Project" })
         </td>
     </tr>
 }

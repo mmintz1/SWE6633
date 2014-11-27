@@ -25,6 +25,7 @@ namespace ManagementTool.Website.Controllers
             RequirementVM model = new RequirementVM();
             model.ProjectId = id;
             ViewBag.ControllerAction = "CreateRequirement";
+            ViewBag.PageTitle = "Create Requirement";
             return View("~/Views/Requirement/RequirementForm.cshtml", model);
         }
 
@@ -42,6 +43,7 @@ namespace ManagementTool.Website.Controllers
             var mediator = new RequirementMediator();
             var model = mediator.GetRequirement(id);
             ViewBag.ControllerAction = "EditRequirement";
+            ViewBag.PageTitle = "Edit Requirement";
             return View("~/Views/Requirement/RequirementForm.cshtml", model);
         }
 

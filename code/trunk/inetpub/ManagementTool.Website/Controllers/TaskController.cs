@@ -20,10 +20,12 @@ namespace ManagementTool.Website.Controllers
         }
 
         [HttpGet]
-        public ActionResult CreateTask()
+        public ActionResult CreateTask(int id)
         {
             var taskModel = new TaskVM();
+            taskModel.ProjectId = id;
             ViewBag.ControllerAction = "CreateTask";
+            ViewBag.PageTitle = "Create Task";
             var uMediator = new UserMediator();
             taskModel.CompanyEmployees = uMediator.GetUsersByCompanyId();
             return View("~/Views/Task/TaskForm.cshtml", taskModel);
@@ -45,6 +47,7 @@ namespace ManagementTool.Website.Controllers
                 var uMediator = new UserMediator();
                 task.CompanyEmployees = uMediator.GetUsersByCompanyId();
                 ViewBag.ControllerAction = "CreateTask";
+                ViewBag.PageTitle = "Create Task";
                 ModelState.AddModelError("ErrorMessage", "Unable to create task");
                 return View("~/Views/Task/TaskForm.cshtml", task);
             }
@@ -55,6 +58,7 @@ namespace ManagementTool.Website.Controllers
         {
             var mediator = new TaskMediator();
             ViewBag.ControllerAction = "EditTask";
+            ViewBag.PageTitle = "Edit Task";
             TaskVM taskModel = mediator.GetTask(id);
             var uMediator = new UserMediator();
             
@@ -78,6 +82,7 @@ namespace ManagementTool.Website.Controllers
 
                 model.CompanyEmployees = uMediator.GetUsersByCompanyId();
                 ViewBag.ControllerAction = "EditTask";
+                ViewBag.PageTitle = "Edit Task";
                 ModelState.AddModelError("ErrorMessage", "Unable to update Task");
                 return View("~/Views/Task/TaskForm.cshtml", model);
             }

@@ -22,7 +22,7 @@ namespace ManagementTool.Framework.Mediators
                 {
                     Title = model.Title,
                     Description = model.Description,
-                    ProjectId = 1,
+                    ProjectId = model.ProjectId,
                     Type = model.Category.ToString()
                 };
 

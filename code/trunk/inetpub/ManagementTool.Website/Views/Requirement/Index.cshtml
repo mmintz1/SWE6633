@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Requirements</h2>
 
 <table>
     <tr>
@@ -11,13 +11,13 @@
             Title
         </th>
         <th>
-            Status
+            Description
         </th>
         <th>
-            Due Date
+            Category
         </th>
         <th>
-            Project Manager
+            
         </th>
     </tr>
 
@@ -34,7 +34,8 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "EditRequirement", new { controller = "Requirement", id = item.Id }) |
-            @Html.ActionLink("Details", "RequirementDetails", new { controller = "Requirement", id = item.Id })
+            @Html.ActionLink("Details", "RequirementDetails", new { controller = "Requirement", id = item.Id }) |
+            @Html.ActionLink("Cancel", "Index", new { controller = "Project" })
         </td>
     </tr>
 }

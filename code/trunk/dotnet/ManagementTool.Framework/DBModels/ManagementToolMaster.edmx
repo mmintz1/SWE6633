@@ -46,6 +46,7 @@
           <Property Name="ExpendedHours" Type="float" Nullable="false" />
           <Property Name="Category" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="TaskID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AssignedTo" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -104,6 +105,7 @@
           <Property Type="Double" Name="ExpendedHours" Nullable="false" />
           <Property Type="String" Name="Category" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="TaskID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="AssignedTo" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Requirement">
           <Key>
@@ -150,6 +152,7 @@
           <EntitySetMapping Name="Tasks">
             <EntityTypeMapping TypeName="ManagementToolDBModels.Task">
               <MappingFragment StoreEntitySet="Task">
+                <ScalarProperty Name="AssignedTo" ColumnName="AssignedTo" />
                 <ScalarProperty Name="TaskID" ColumnName="TaskID" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="ExpendedHours" ColumnName="ExpendedHours" />

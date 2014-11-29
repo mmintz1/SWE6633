@@ -1,0 +1,41 @@
+﻿@model ManagementTool.Framework.Models.Risk.RiskVM
+@{
+    ViewBag.Title = "RiskDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Risk Detail</h2>
+
+<table>
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayFor(l => l.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(l => l.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(l => l.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditRisk", new { controller = "Risk", id = Model.Id}) | 
+            @Html.ActionLink("Cancel", "Index", new { controller = "Risk", id = Model.ProjectId})
+        </td>
+    </tr>
+
+</table>

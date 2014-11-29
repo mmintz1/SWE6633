@@ -21,6 +21,7 @@ namespace ManagementTool.Website.Controllers
             var mediator = new ProjectMediator();
             CSUser user = SessionHelper.GetUserSession();
             var projects = mediator.GetAllCompanyProjects(user.CompanyId);
+            ViewBag.CompanyId = user.CompanyId;
             return View(projects);
         }
 
@@ -98,6 +99,25 @@ namespace ManagementTool.Website.Controllers
             var mediator = new ProjectMediator();
             model = mediator.GetProject(id);
             return View("~/Views/Project/ProjectDetail.cshtml", model);
+        }
+
+        public ActionResult Report(int id)
+        {
+            var model = new ReportVM();
+            var list = new List<Report>();
+            var mediator = new TaskMediator();
+            var tasks = mediator.GetAllTasks(id);
+            var blah = tasks.GroupBy(g => g.Category);
+            foreach (var key in blah)
+            {
+                var report = new Report();
+                report.Category = key.FirstOrDefault().Category;
+                report.ExpendedHours = key.Sum(r => r.TaskHours);
+                list.Add(report);
+            }
+
+            model.Category = list;
+            return View(model);
         }
     }
 }

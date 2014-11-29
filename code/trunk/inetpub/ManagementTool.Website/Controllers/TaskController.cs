@@ -16,6 +16,7 @@ namespace ManagementTool.Website.Controllers
         {
             var mediator = new TaskMediator();
             var projects = mediator.GetAllTasks(id);
+            ViewBag.ProjectId = id;
             return View(projects);
         }
 

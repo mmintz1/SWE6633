@@ -16,7 +16,8 @@ namespace ManagementTool.Framework.Transformers
             {
                 Title = requirement.Title,
                 Description = requirement.Description,
-                Category = (RequirementCategory)Enum.Parse(typeof(RequirementCategory), requirement.Type),
+                Category = (RequirementCategory)Enum.Parse(typeof(RequirementCategory), requirement.Category),
+                Type = (RequirementType)Enum.Parse(typeof(RequirementType), requirement.Type),
                 ProjectId = requirement.ProjectId,
                 Id = requirement.RequirementId
             };

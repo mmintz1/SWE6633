@@ -1,13 +1,13 @@
-﻿@model ManagementTool.Framework.Models.Requirement.RequirementVM
+﻿@model ManagementTool.Framework.Models.Risk.RiskVM
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     var action = (string)ViewBag.ControllerAction;
     var title = (string)ViewBag.PageTitle;
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@title</h2>
+<h2>RiskForm</h2>
 
-@using (Html.BeginForm(@action, "Requirement", FormMethod.Post, new { @class = "management-form" }))
+@using (Html.BeginForm(@action, "Risk", FormMethod.Post, new { @class = "management-form" }))
 {
     <div>
         <fieldset>
@@ -26,16 +26,10 @@
                 @Html.TextAreaFor(l => l.Description, new { required = "" } )
             </div>
             <div class="editor-label">
-                @Html.LabelFor(l => l.Category, "Category")
+                @Html.LabelFor(l => l.Status, "Status")
             </div>
             <div class="editor-field">
-                @Html.DropDownListFor(l => l.Category, new SelectList(Enum.GetValues(typeof(ManagementTool.Framework.Enums.RequirementCategory))))
-            </div>
-            <div class="editor-label">
-                @Html.LabelFor(l => l.Type, "Type")
-            </div>
-            <div class="editor-field">
-                @Html.DropDownListFor(l => l.Type, new SelectList(Enum.GetValues(typeof(ManagementTool.Framework.Enums.RequirementType))))
+                @Html.DropDownListFor(l => l.Status, new SelectList(Enum.GetValues(typeof(ManagementTool.Framework.Enums.RiskStatus))))
             </div>
 
 
@@ -44,14 +38,8 @@
             
             <p>
                 <input type="submit" value="submit" />
-                @Html.ActionLink("Cancel", "Index", new { controller = "Requirement", id = Model.ProjectId })
+                @Html.ActionLink("Cancel", "Index", new { controller = "Risk", id = Model.ProjectId })
             </p>
         </fieldset>
     </div>
 }
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.management-form').validate();
-    });
-</script>

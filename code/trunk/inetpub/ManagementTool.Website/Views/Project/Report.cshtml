@@ -1,0 +1,28 @@
+﻿@model ManagementTool.Framework.Models.Project.ReportVM
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Report</h2>
+
+<table>
+    <tr>
+        <th>
+            Category
+        </th>
+        <th>
+            Expended Hours
+        </th>
+    </tr>
+    @foreach (var item in Model.Category)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(l => item.Category)
+        </td>
+        <td>
+            @Html.DisplayFor(l => item.ExpendedHours)
+        </td>
+    </tr>
+    }
+</table>

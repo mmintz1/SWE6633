@@ -8,6 +8,7 @@
         <EntityContainer Name="ManagementToolDBModelsStoreContainer">
           <EntitySet Name="Project" EntityType="ManagementToolDBModels.Store.Project" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Requirement" EntityType="ManagementToolDBModels.Store.Requirement" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Risk" EntityType="ManagementToolDBModels.Store.Risk" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Task" EntityType="ManagementToolDBModels.Store.Task" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="ManagementToolDBModels.Store.User" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
@@ -33,6 +34,17 @@
           <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="ProjectId" Type="int" Nullable="false" />
           <Property Name="RequirementId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Risk">
+          <Key>
+            <PropertyRef Name="RiskId" />
+          </Key>
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Status" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="RiskId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
@@ -68,6 +80,7 @@
           <EntitySet Name="Projects" EntityType="ManagementToolDBModels.Project" />
           <EntitySet Name="Tasks" EntityType="ManagementToolDBModels.Task" />
           <EntitySet Name="Requirements" EntityType="ManagementToolDBModels.Requirement" />
+          <EntitySet Name="Risks" EntityType="ManagementToolDBModels.Risk" />
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -116,6 +129,17 @@
           <Property Type="String" Name="Type" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="ProjectId" Nullable="false" />
           <Property Type="Int32" Name="RequirementId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Category" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Risk">
+          <Key>
+            <PropertyRef Name="RiskId" />
+          </Key>
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Status" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ProjectId" Nullable="false" />
+          <Property Type="Int32" Name="RiskId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -167,9 +191,21 @@
           <EntitySetMapping Name="Requirements">
             <EntityTypeMapping TypeName="ManagementToolDBModels.Requirement">
               <MappingFragment StoreEntitySet="Requirement">
+                <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="RequirementId" ColumnName="RequirementId" />
                 <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Risks">
+            <EntityTypeMapping TypeName="ManagementToolDBModels.Risk">
+              <MappingFragment StoreEntitySet="Risk">
+                <ScalarProperty Name="RiskId" ColumnName="RiskId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
               </MappingFragment>

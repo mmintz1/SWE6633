@@ -12,8 +12,9 @@ namespace ManagementTool.Framework.Mediators
 {
     public class RequirementMediator
     {
-        public void CreateRequirement(RequirementVM model)
+        public bool CreateRequirement(RequirementVM model)
         {
+            bool success = false;
             using (var db = new ManagementToolEntities())
             {
                 var resp = new RequirementRepository(db);
@@ -23,12 +24,15 @@ namespace ManagementTool.Framework.Mediators
                     Title = model.Title,
                     Description = model.Description,
                     ProjectId = model.ProjectId,
-                    Type = model.Category.ToString()
+                    Type = model.Type.ToString(),
+                    Category = model.Category.ToString()
                 };
 
                 resp.Insert(requirement);
-                var success = db.SaveChanges() > 0;
+                success = db.SaveChanges() > 0;
             }
+
+            return success;
         }
 
         public List<RequirementVM> GetProjectRequirements(int projectId)
@@ -62,21 +66,25 @@ namespace ManagementTool.Framework.Mediators
             return model;
         }
 
-        public void UpdateRequirement(RequirementVM model)
+        public bool UpdateRequirement(RequirementVM model)
         {
+            bool success = false;
             using (var db = new ManagementToolEntities())
             {
                 var resp = new RequirementRepository(db);
 
                 var requirement = resp.GetFirstOrDefault(r => r.RequirementId == model.Id);
 
-                requirement.Type = model.Category.ToString();
+                requirement.Type = model.Type.ToString();
+                requirement.Category = model.Category.ToString();
                 requirement.Description = model.Description;
                 requirement.Title = model.Title;
 
                 resp.Update(requirement);
-                var success = db.SaveChanges() > 0;
+                success = db.SaveChanges() > 0;
             }
+
+            return success;
         }
     }
 }

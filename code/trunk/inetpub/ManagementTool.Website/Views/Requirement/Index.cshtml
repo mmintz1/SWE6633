@@ -1,9 +1,15 @@
 ﻿@model List<ManagementTool.Framework.Models.Requirement.RequirementVM>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var projectId = (int)ViewBag.ProjectId;
 }
 
 <h2>Requirements</h2>
+
+<p>
+    @Html.ActionLink("Create Requirement", "CreateRequirement", new { controller = "Requirement", id = @projectId }) |
+    @Html.ActionLink("Cancel", "Index", new { controller = "Project" })
+</p>
 
 <table>
     <tr>
@@ -17,6 +23,9 @@
             Category
         </th>
         <th>
+            Type
+        </th>
+        <th>
             
         </th>
     </tr>
@@ -24,7 +33,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(itmodelItem => item.Title)
+            @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Description)
@@ -33,9 +42,11 @@
             @Html.DisplayFor(modelItem => item.Category)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
             @Html.ActionLink("Edit", "EditRequirement", new { controller = "Requirement", id = item.Id }) |
-            @Html.ActionLink("Details", "RequirementDetails", new { controller = "Requirement", id = item.Id }) |
-            @Html.ActionLink("Cancel", "Index", new { controller = "Project" })
+            @Html.ActionLink("Details", "RequirementDetails", new { controller = "Requirement", id = item.Id })
         </td>
     </tr>
 }

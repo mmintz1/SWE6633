@@ -9,6 +9,7 @@
         <EntityTypeShape EntityType="ManagementToolDBModels.Project" Width="1.5" PointX="0.75" PointY="0.625" />
         <EntityTypeShape EntityType="ManagementToolDBModels.Task" Width="1.5" PointX="3.125" PointY="0.625" />
         <EntityTypeShape EntityType="ManagementToolDBModels.Requirement" Width="1.5" PointX="8" PointY="0.875" />
+        <EntityTypeShape EntityType="ManagementToolDBModels.Risk" Width="1.5" PointX="10.75" PointY="0.875" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

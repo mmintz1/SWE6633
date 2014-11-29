@@ -1,0 +1,48 @@
+﻿@model List<ManagementTool.Framework.Models.Risk.RiskVM>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var projectId = (int)ViewBag.ProjectId;
+}
+
+<h2>Risks</h2>
+
+<p>
+    @Html.ActionLink("Create Risk", "CreateRisk", new { controller = "Risk", id = @projectId }) |
+    @Html.ActionLink("Cancel", "Index", new { controller = "Project" })
+</p>
+
+<table>
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(itmodelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditRisk", new { controller = "Risk", id = item.Id }) |
+            @Html.ActionLink("Details", "RiskDetails", new { controller = "Risk", id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,9 +1,11 @@
 ﻿@model List<ManagementTool.Framework.Models.Project.ProjectVM>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var companyId = (int)ViewBag.CompanyId;
 }
 
 <h2>Projects</h2>
+<p>@Html.ActionLink("Create Project", "CreateProject", new { controller = "Project", id = @companyId })</p>
 
 <table>
     <tr>
@@ -42,7 +44,9 @@
             @Html.ActionLink("Edit", "EditProject", new { controller = "Project", id = item.Id }) |
             @Html.ActionLink("Details", "ProjectDetails", new { controller = "Project", id = item.Id }) |
             @Html.ActionLink("View Tasks", "Index", new { controller = "Task", id = item.Id }) |
-            @Html.ActionLink("View Requirements", "Index", new { controller = "Requirement", id = item.Id })
+            @Html.ActionLink("View Requirements", "Index", new { controller = "Requirement", id = item.Id }) |
+            @Html.ActionLink("View Risks", "Index", new { controller = "Risk", id = item.Id }) |
+            @Html.ActionLink("View Hours Report", "Report", new { controller = "Project", id = item.Id })
         </td>
     </tr>
 }

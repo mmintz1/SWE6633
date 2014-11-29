@@ -1,0 +1,46 @@
+﻿@model ManagementTool.Framework.Models.Requirement.RequirementVM
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Requirement Details</h2>
+
+<table>
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayFor(l => l.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(l => l.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(l => l.Category)
+        </td>
+        <td>
+            @Html.DisplayFor(l => l.Type)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditRequirement", new { controller = "Requirement", id = Model.Id}) | 
+            @Html.ActionLink("Cancel", "Index", new { controller = "Requirement", id = Model.ProjectId})
+        </td>
+    </tr>
+
+</table>

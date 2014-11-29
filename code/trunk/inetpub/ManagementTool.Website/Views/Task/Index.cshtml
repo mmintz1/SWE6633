@@ -1,9 +1,14 @@
 ﻿@model List<ManagementTool.Framework.Models.Task.TaskVM>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var projectId = (int)ViewBag.ProjectId;
 }
 
 <h2>Tasks</h2>
+<p>
+    @Html.ActionLink("Create Task", "CreateTask", new { controller = "Task", id = @projectId }) |
+    @Html.ActionLink("Cancel", "Index", new { controller = "Project" })
+</p>
 
 <table>
     <tr>
@@ -46,8 +51,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "EditTask", new { controller = "Task", id = item.Id }) |
-            @Html.ActionLink("Details", "TaskDetails", new { controller = "Task", id = item.Id }) |
-            @Html.ActionLink("Cancel", "Index", new { controller = "Project" })
+            @Html.ActionLink("Details", "TaskDetails", new { controller = "Task", id = item.Id })
         </td>
     </tr>
 }

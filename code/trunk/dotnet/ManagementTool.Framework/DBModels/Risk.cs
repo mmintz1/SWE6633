@@ -12,13 +12,12 @@ namespace ManagementTool.Framework.DBModels
     using System;
     using System.Collections.Generic;
     
-    public partial class Requirement
+    public partial class Risk
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public string Type { get; set; }
+        public string Status { get; set; }
         public int ProjectId { get; set; }
-        public int RequirementId { get; set; }
-        public string Category { get; set; }
+        public int RiskId { get; set; }
     }
 }

@@ -20,10 +20,10 @@
             Project Manager
         </th>
         <th>
-            Due Date
+            Project Employees
         </th>
         <th>
-            
+            Due Date
         </th>
         <th>
 
@@ -41,6 +41,9 @@
         </td>
         <td>
             @Html.DisplayFor(l => l.Manager)
+        </td>
+        <td>
+            @string.Join(", ", Model.ProjectEmployees)
         </td>
         <td>
             @Html.DisplayFor(l => l.DueDate)
